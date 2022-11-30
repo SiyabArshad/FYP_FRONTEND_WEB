@@ -1,8 +1,21 @@
+import "./assets/fonts/RobotoMono-Bold.ttf"
+import "./assets/fonts/RobotoMono-BoldItalic.ttf"
+import "./assets/fonts/RobotoMono-ExtraLight.ttf"
+import "./assets/fonts/RobotoMono-ExtraLightItalic.ttf"
+import "./assets/fonts/RobotoMono-Italic.ttf"
+import "./assets/fonts/RobotoMono-Light.ttf"
+import "./assets/fonts/RobotoMono-LightItalic.ttf"
+import "./assets/fonts/RobotoMono-Medium.ttf"
+import "./assets/fonts/RobotoMono-MediumItalic.ttf"
+import "./assets/fonts/RobotoMono-Regular.ttf"
+import "./assets/fonts/RobotoMono-SemiBold.ttf"
+import "./assets/fonts/RobotoMono-SemiBoldItalic.ttf"
+import "./assets/fonts/RobotoMono-Thin.ttf"
+import "./assets/fonts/RobotoMono-ThinItalic.ttf"
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './stylesheets/index.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,8 +23,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
