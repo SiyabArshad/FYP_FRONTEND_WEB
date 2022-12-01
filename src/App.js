@@ -1,9 +1,10 @@
 
+import Homeadmin from "./pages/admin/Homeadmin";
 function App() {
   return (
-    <div className="App">
-      <p>working</p>
-    </div>
+    <>
+    <Homeadmin/>
+    </>
   );
 }
 
