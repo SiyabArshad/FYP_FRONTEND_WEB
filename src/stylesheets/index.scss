@@ -4,6 +4,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+body{
+    background-color: $primary;
+}
+button{
+    font-size: .9rem;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
 }
 @font-face {
     font-family:$Roboto_bold ;
@@ -75,4 +86,14 @@
     font-family:$Roboto_thinitalic;
     src: local($Roboto_thinitalic),
      url("../assets/fonts/RobotoMono-ThinItalic.ttf") format("truetype");
+    }
+    @media screen and ( max-width:500px ) {
+        html{
+            font-size: 10px;
+        }
+    }
+    @media only screen and (max-width: 850px) and (min-width: 500px){
+        html{
+            font-size: 12px;
+        }
     }
