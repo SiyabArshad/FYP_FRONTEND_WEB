@@ -23,7 +23,6 @@
     padding: .5rem .8rem;
     border-radius: .5rem;
     width: 20%;
-    overflow: hidden;
     margin: .5rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     button{
@@ -71,6 +70,8 @@
     border-radius: .3rem;
     width: 50%;
     overflow: hidden;
+    position: relative;
+    top: -20%;
     input{
         width: 100%;
         margin-bottom: .3rem;

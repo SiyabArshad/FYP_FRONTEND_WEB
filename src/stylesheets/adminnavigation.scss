@@ -2,6 +2,7 @@
 @import "fonts";
 .haadminparent{
     position: relative;
+    background-color: $primary;
 }
 .adminnavdiv1{
     background-color: $secondary;
@@ -31,13 +32,4 @@
             }
         }
     }
-}
-.adminnavdiv1anim1{
-    transform: translateX(100%);
-    transition: transform .8s ease;
-}
-.adminnavdiv1anim2
-{
-    transform: translateX(0%);
-    transition: transform .8s ease;
 }
