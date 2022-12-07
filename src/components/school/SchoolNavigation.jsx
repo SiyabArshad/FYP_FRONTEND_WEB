@@ -17,7 +17,7 @@ export default function SchoolNavigation({menustate}) {
         },
         {
             name:"Events",
-            url:"/"
+            url:"/events"
         },
         {
             name:"Classes",

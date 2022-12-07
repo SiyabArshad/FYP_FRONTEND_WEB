@@ -31,10 +31,10 @@
     border-style: none;
     border: 1px solid $secondary;
     padding: .2rem .6rem;
-    font-family: $Roboto-bold;
+    font-family: $Roboto_bold;
     color: grey;
     option{
-      font-family: $Roboto-light;
+      font-family: $Roboto_regular;
     }
   }
   .filercheck{
@@ -50,11 +50,11 @@
     border: 2px solid $primary;
   }
   .filercheck::after{
-    content: "Employee is Filer";
+    content: "Tax Filer";
     position: relative;
     left: 5%;
     font-size: .9rem;
-    font-family: $Roboto-light;
+    font-family: $Roboto_regular;
   }
   #forFiler:checked ~ .filercheck::before{
     background-color: $secondary;

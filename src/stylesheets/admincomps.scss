@@ -32,7 +32,7 @@
         padding: .3rem .6rem;
         border-radius: .3rem;
         cursor: pointer;
-        font-family: $Roboto-light;
+        font-family: $Roboto_regular;
     }
 }
 .scmncont1:hover{
@@ -54,7 +54,7 @@
 }
 .sctitle{
     width: 30%;
-    font-family: $Roboto-semibold;
+    font-family: $Roboto_regular;
     margin-right: .5rem;
     overflow: hidden;
 }
@@ -62,6 +62,7 @@
     width: 70%;
     overflow: hidden;
     font-family: $Roboto_light;
+    font-size: .9rem;
 
 }
 .csform{
@@ -81,7 +82,7 @@
         border:1px solid $secondary;
         color: $blackc;
         font-size: 1rem;
-        font-family: $Roboto-light;
+        font-family: $Roboto_regular;
     }
     button{
         padding: .3rem .6rem;
@@ -127,7 +128,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     p{
         font-size: 1rem;
-        font-family: $Roboto-light;
+        font-family: $Roboto_regular;
         color: $whitec;
     }
     i{
