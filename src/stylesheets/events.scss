@@ -1,0 +1,45 @@
+@import "colors";
+@import "fonts";
+.cevi{
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: .5rem;
+    label{
+           img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+           }
+    }
+}
+.parentallevent{
+margin: .5rem;
+}
+.eventsall{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $whitec;
+    border-radius: .4rem;
+    margin-bottom: .5rem;
+    padding: .5rem 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    span{
+        font-family: $Roboto_regular;
+        color: $primary;
+    }
+    button{
+        cursor: pointer;
+        border-style: none;
+        padding: .4rem .6rem;
+        border-radius: .2rem;
+        background-color: $secondary;
+        color: $whitec;
+    }
+
+}
