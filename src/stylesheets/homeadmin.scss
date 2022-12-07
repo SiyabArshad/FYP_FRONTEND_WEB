@@ -2,7 +2,7 @@
 @import "fonts";
 .adhmmain{
     position: relative;
-    overflow: hidden;
+  overflow: hidden;
 }
 .adhmsearch{
     padding: 1rem 1rem;
@@ -29,8 +29,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    overflow: hidden;
-}
+  }
 .createschool{
     padding: 1rem 2rem;
     display: flex;
@@ -55,7 +54,8 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    top: -1px;
+    top: 0px;
+   
 }
 @media screen and ( max-width:500px ) {
     

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Heasderadmin from '../../components/admin/Heasderadmin'
 import Schoolscard from '../../components/admin/Schoolscard'
 import Createschool from '../../components/admin/Createschool'
 export default function Homeadmin() {

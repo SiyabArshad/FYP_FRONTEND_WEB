@@ -4,10 +4,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 body{
     background-color: $primary;
+    overflow-x: hidden;
 }
 button{
     font-size: .9rem;
@@ -15,6 +15,24 @@ button{
 .link{
     text-decoration: none;
     color: inherit;
+}
+.oh{
+    overflow: hidden;
+}
+body::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 @font-face {
     font-family:$Roboto_bold ;

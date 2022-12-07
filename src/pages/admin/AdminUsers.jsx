@@ -19,7 +19,7 @@ export default function AdminUsers() {
         </div>
         <div className='adhmschools'>
             {
-                [1,2,3,4,5,5,6,67,8,89,3,5,6,4,7,89,3].map((item,i)=>(
+                [1,2,3,4,5,5,6,67,8,89,3,5,6,4,7,89,3,1,2,3,4,5,5,6,67,8,89,3,5,6,4,7,89,3].map((item,i)=>(
                     <Adminscard key={i}/>
                 ))
             }
