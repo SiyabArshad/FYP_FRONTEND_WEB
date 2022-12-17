@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import Homeadmin from "./pages/admin/Homeadmin";
 import AdminUsers from "./pages/admin/AdminUsers";
