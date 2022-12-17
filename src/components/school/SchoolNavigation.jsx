@@ -21,7 +21,11 @@ export default function SchoolNavigation({menustate}) {
         },
         {
             name:"Classes",
+<<<<<<< HEAD
             url:"/"
+=======
+            url:"/classes"
+>>>>>>> c9895e3 (ali work week 4)
         },
         {
             name:"Fees",

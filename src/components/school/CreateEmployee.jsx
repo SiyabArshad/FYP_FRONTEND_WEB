@@ -17,7 +17,11 @@ export default function CreateEmployee({closebutton}) {
           <input type="email" placeholder='Email'/>
           <input type="text" placeholder='Address'/>
           <input type="number" placeholder='Contact no'/>
+<<<<<<< HEAD
           <select>
+=======
+          <select >
+>>>>>>> c9895e3 (ali work week 4)
             <option>
                 Male
             </option>

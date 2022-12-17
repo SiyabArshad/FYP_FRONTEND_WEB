@@ -1,0 +1,59 @@
+@import "../stylesheets/colors.scss";
+
+.class_main{
+    margin-bottom: 5rem;
+    .SSheading{
+        text-align: center;
+        color: $whitec;
+        padding: 1rem 0;;
+    }
+}
+
+.scmncont1{
+
+    .clasName{
+        padding-bottom: 0.5rem;
+    }
+    .secondary{
+        background: $secondary;
+        margin: 0.5rem 0;
+    }
+    .redc{
+        background: $redc;
+        margin: 0.5rem 0;
+    }
+}
+
+.class_div{
+    .class_link{
+
+        text-decoration: none;
+        color: $blackc;
+    }
+    .class_TN{
+        margin: 10px 5px 2px 5px;
+        display: flex;
+        justify-content :space-between
+    }
+
+    .clasName{
+        padding: 30px; 
+        background: $lightgrey;
+    }    
+    
+}
+
+.scmncont1:hover{
+    .empdp{
+        color: $whitec;
+    }
+    .clasName{
+        
+        background: $primary;
+        transition: .5s;
+    } 
+    .class_TN{
+        color: $whitec;
+    }
+
+}
