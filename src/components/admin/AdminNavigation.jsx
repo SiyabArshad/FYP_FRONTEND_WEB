@@ -6,7 +6,7 @@ export default function AdminNavigation({menustate}) {
     return (
     <div style={{transform:menustate?"translateX(0)":"translateX(100%)"}} className='adminnavdiv1'>
         <ul>
-            <Link to="/" className='link'>
+            <Link to="/admin/schools" className='link'>
             <li onClick={()=>setcurrmenu("schools")} style={{backgroundColor:currmenu==="schools"&&"#0BCF6D"}}>
             <i class="fa-solid fa-school"></i>
                 <span>Schools</span>
