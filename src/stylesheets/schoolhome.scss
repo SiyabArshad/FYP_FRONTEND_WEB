@@ -1,0 +1,59 @@
+@import "colors";
+@import "fonts";
+.schooldiv2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    span{
+        color: $whitec;
+        font-family: $Roboto_regular;
+        font-size: 2.5rem;
+
+    }
+}
+
+.slideshow {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 800px;
+    margin-top: 3rem;
+  }
+  
+  .slideshowSlider {
+    white-space: nowrap;
+    transition: ease 1000ms;
+  }/* Slideshow */
+  
+  
+  .slide {
+    display: inline-block;
+  
+    height: 400px;
+    width: 100%;
+    border-radius: 40px;
+  }
+  
+  /* Buttons */
+  
+  .slideshowDots {
+    text-align: center;
+  }
+  
+  .slideshowDot {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+  
+    cursor: pointer;
+    margin: 15px 7px 0px;
+  
+    background-color: $lightgrey;
+  }
+  
+  .slideshowDot.active {
+    background-color: $secondary;
+  }
+  

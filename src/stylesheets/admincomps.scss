@@ -1,0 +1,152 @@
+@import "colors";
+@import "fonts";
+
+
+.hadmncont1{
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    p{
+        color: $whitec;
+        font-size: 1.8rem;
+    }
+    i{
+        color: $whitec;
+        font-size: 1.7rem;
+        cursor: pointer;
+    }
+
+}
+.scmncont1{
+    background-color: rgba($color: $whitec, $alpha: 1);
+    padding: .5rem .8rem;
+    border-radius: .5rem;
+    width: 20%;
+    margin: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    button{
+        border-style: none;
+        background-color: $secondary;
+        color: $whitec;
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        cursor: pointer;
+        font-family: $Roboto_regular;
+    }
+}
+.scmncont1:hover{
+    background-color: rgba($color: $whitec, $alpha: 0.1);
+    cursor: pointer;
+    transition: .5s;
+    .sctitle{
+        color: $whitec;
+    }
+    .scpara{
+        color: $whitec;
+    }
+}
+.scmnchildcont{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    margin: .5rem 0rem;
+}
+.sctitle{
+    width: 30%;
+    font-family: $Roboto_regular;
+    margin-right: .5rem;
+    overflow: hidden;
+}
+.scpara{
+    width: 70%;
+    overflow: hidden;
+    font-family: $Roboto_light;
+    font-size: .9rem;
+
+}
+.csform{
+    background-color: $whitec;
+    padding: 1rem 2rem;
+    border-radius: .3rem;
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -20%;
+    input{
+        width: 100%;
+        margin-bottom: .3rem;
+        padding: .3rem .6rem;
+        outline: none;
+        border-style: none;
+        border:1px solid $secondary;
+        color: $blackc;
+        font-size: 1rem;
+        font-family: $Roboto_regular;
+    }
+    button{
+        padding: .3rem .6rem;
+        border-style: none;
+        background-color: $secondary;
+        color: $whitec;
+        border-radius: .3rem;
+        cursor: pointer;
+        margin-top: .5rem;
+    }
+}
+.csformclose{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    i{
+        font-size: 1.5rem;
+        color: $secondary;
+        cursor: pointer;
+    }
+}
+.cadmincenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    i{
+        font-size: 1.8rem;
+        color: $secondary;
+    }
+}
+.alertsec{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .8rem;
+    margin: .5rem .6rem;
+    border-radius: .2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    p{
+        font-size: 1rem;
+        font-family: $Roboto_regular;
+        color: $whitec;
+    }
+    i{
+        color: $whitec;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+}
+
+@media screen and ( max-width:500px ) {
+    .scmncont1{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 850px) and (min-width: 500px){
+    .scmncont1{
+        width: 40%;
+    }
+}

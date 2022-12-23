@@ -1,0 +1,64 @@
+@import "colors";
+@import "fonts";
+.adhmmain{
+    position: relative;
+  overflow: hidden;
+}
+.adhmsearch{
+    padding: 1rem 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input{
+        width: 70%;
+        padding: .5rem 1rem;
+        outline: none;
+        border-style: none;
+        background-color: $lightgrey;
+        color: $blackc;
+        font-size: 1.1rem;
+        border-radius: .2rem;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        font-family: $Roboto_regular;
+    }
+}
+.adhmschools{
+    padding: .5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+.createschool{
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    button{
+        background-color: $secondary;
+        padding: .5rem 1rem;
+        border-radius: .4rem;
+        border-style: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        color: $whitec;
+        font-family: $Roboto_regular;
+        cursor: pointer;
+    }
+}
+.adhmcspc{
+    background-color: rgba($color: $blackc, $alpha: 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+}
+@media screen and ( max-width:500px ) {
+    
+}
+@media only screen and (max-width: 850px) and (min-width: 500px) {
+    
+}
