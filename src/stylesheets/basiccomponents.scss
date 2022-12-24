@@ -1,0 +1,41 @@
+@import "colors";
+@import "fonts";
+//choose date
+.feesubdate{
+    margin-left: .5rem;
+}
+.feefilterdate{
+    background-color: $primary;
+    padding: .3rem .5rem;
+    border-radius: .3rem;
+    margin-right: .5rem;
+    border: 1px solid $secondary;
+    cursor: pointer;
+    font-family: $Roboto_regular;
+    color: $whitec;
+    text-transform: capitalize;
+    
+}
+//end choose date for fee
+
+//menu bar for fee section
+.fsmb{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.fsmbch1{
+    padding: .3rem .5rem;
+    border-radius: .3rem;
+    margin-right: .5rem;
+    border: 1px solid $secondary;
+    cursor: pointer;
+    p{
+        font-family: $Roboto_regular;
+        color: $whitec;
+        text-transform: capitalize;
+    }
+
+}
+//end of bmenu bar for fee section

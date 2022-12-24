@@ -25,7 +25,7 @@ export default function SchoolNavigation({menustate}) {
         },
         {
             name:"Fees",
-            url:"/"
+            url:"/dues"
         },
         {
             name:"Results",
@@ -33,7 +33,7 @@ export default function SchoolNavigation({menustate}) {
         },
         {
             name:"Expenses",
-            url:"/"
+            url:"/expenses"
         },
         {
             name:"Logout",
