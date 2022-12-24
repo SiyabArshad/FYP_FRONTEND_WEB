@@ -13,6 +13,7 @@ import Sections from "./pages/school/Sections";
 import Subject from "./pages/school/Subjects";
 import Fees from "./pages/school/Fees";
 import Expenses from "./pages/school/Expenses";
+import Results from "./pages/school/Results";
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/classes/:class" element={<Sections />} />
         <Route exact path="/dues" element={<Fees />} />
         <Route exact path="/expenses" element={<Expenses />} />
+        <Route exact path="/results" element={<Results />} />
         <Route exact path="/classes/:class/:section" element={<Subject />} />
         <Route exact path="/admin/home" element={<Homeadmin />} />
         <Route exact path="/admin/admins" element={<AdminUsers />} />

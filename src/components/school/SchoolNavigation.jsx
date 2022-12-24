@@ -29,7 +29,7 @@ export default function SchoolNavigation({menustate}) {
         },
         {
             name:"Results",
-            url:"/"
+            url:"/results"
         },
         {
             name:"Expenses",
