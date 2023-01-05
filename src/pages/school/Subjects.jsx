@@ -8,6 +8,15 @@ const Subject = () => {
   const [createClass, setCreateClass] = useState(false);
   const params = useParams();
 
+  const subjects = [
+    { Subject: "English" },
+    { Subject: "Urdu" },
+    { Subject: "Math" },
+    { Subject: "Physics" },
+    { Subject: "Chemistry" },
+    { Subject: "Bio" },
+  ];
+
   return (
     <>
       <div className="adhmmain class_main">
@@ -23,11 +32,9 @@ const Subject = () => {
         </div>
 
         <div className="adhmschools">
-          {["English", "Urdu", "Math", "Physics", "Chemistry", "Physics"].map(
-            (data, i) => (
-              <ClassCard choose="subjects" class={data} key={i} />
-            )
-          )}
+          {subjects.map((data, i) => (
+            <ClassCard choose="subjects" class={data.Subject} key={i} />
+          ))}
         </div>
         {createClass ? (
           <div className="adhmcspc">

@@ -1,10 +1,11 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Homeadmin from "./pages/admin/Homeadmin";
 import AdminUsers from "./pages/admin/AdminUsers";
 // import Alert from "./components/Alert";
 // import Heasderadmin from "./components/admin/Heasderadmin";
 import Employees from "./pages/school/Employees";
 import HeasderSchool from "./components/school/HeasderSchool";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SchoolHome from "./pages/school/SchoolHome";
 import Studentspage from "./pages/school/Students";
 import Eventspage from "./pages/school/Eventspage";
@@ -14,10 +15,16 @@ import Subject from "./pages/school/Subjects";
 import Fees from "./pages/school/Fees";
 import Expenses from "./pages/school/Expenses";
 import Results from "./pages/school/Results";
+import SubjectGeneral from "./pages/school/SubjectGeneral";
+import SubjectHome from "./pages/school/SubjectHome";
+import SubjectAttendence from "./pages/school/SubjectAttendence";
+import SubjectAssignmentPending from "./pages/school/SubjectAssignmentPending";
+import SubjectAssignmentCompleted from "./pages/school/SubjectAssignmentCompleted";
+
 function App() {
   return (
     <Router>
-      {/* <Heasderadmin/>   */}
+      {/* <Heasderadmin /> */}
       <HeasderSchool />
       <Routes>
         <Route exact path="/" element={<SchoolHome />} />
@@ -32,6 +39,32 @@ function App() {
         <Route exact path="/classes/:class/:section" element={<Subject />} />
         <Route exact path="/admin/home" element={<Homeadmin />} />
         <Route exact path="/admin/admins" element={<AdminUsers />} />
+
+        <Route
+          exact
+          path="/classes/:class/:section/:subject"
+          element={<SubjectGeneral />}
+        />
+        <Route
+          exact
+          path="/classes/:class/:section/:subject/home"
+          element={<SubjectHome />}
+        />
+        <Route
+          exact
+          path="/classes/:class/:section/:subject/assignment/pendings"
+          element={<SubjectAssignmentPending />}
+        />
+        <Route
+          exact
+          path="/classes/:class/:section/:subject/assignment/completed"
+          element={<SubjectAssignmentCompleted />}
+        />
+        <Route
+          exact
+          path="/classes/:class/:section/:subject/attendence"
+          element={<SubjectAttendence />}
+        />
       </Routes>
     </Router>
   );

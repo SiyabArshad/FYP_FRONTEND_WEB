@@ -25,17 +25,17 @@
 }
 
 .class_div{
+    
     .class_link{
-
         text-decoration: none;
         color: $blackc;
     }
     .class_TN{
         margin: 10px 5px 2px 5px;
         display: flex;
-        justify-content :space-between
+        justify-content :space-between;
+    height: 20%;
     }
-
     .clasName{
         padding: 30px; 
         background: $lightgrey;
