@@ -10,20 +10,17 @@ const ClassCard = (props) => {
         <Link
           className="class_link"
           to={
-            props.choose === "classes" ? "/classes/" + props.class : props.class
+            props.choose === "classes"
+              ? "/classes/" + props.class
+              : props.choose === "subjects"
+              ? props.class
+              : props.class
           }
         >
           <h2 className="empdp clasName">{props.class}</h2>
         </Link>
 
-        {props.choose === "subjects" && (
-          <div className="class_TN">
-            <h5>Teacher Name</h5>
-            <p>Dr.Farrukh Zeeshan</p>
-          </div>
-        )}
-
-        {props.choose !== "subjects" && (
+        {props.choose !== "subjects" ? (
           <button
             className={classActive ? "secondary" : "redc"}
             onClick={() => {
@@ -32,6 +29,11 @@ const ClassCard = (props) => {
           >
             {classActive ? "Active" : "Disable"}
           </button>
+        ) : (
+          <div className="class_TN">
+            <h5>Teacher Name</h5>
+            <p>Dr.Farrukh Zeeshan</p>
+          </div>
         )}
       </div>
     </>
