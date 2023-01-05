@@ -48,7 +48,7 @@ const CreateUpdateAssignment = ({
         </>
       )}
       <div style={{ marginTop: ".5rem", width: "100%", display: "flex" }}>
-        <label style={{ paddingTop: "10px", width: "85px" }}>Due-Date:</label>
+        <label style={{ paddingTop: "10px", width: "85px" }}>Due Date:</label>
         <input type="date" style={{ width: "10rem" }} />
       </div>
       <div style={{ marginTop: ".5rem", width: "100%", display: "flex" }}>

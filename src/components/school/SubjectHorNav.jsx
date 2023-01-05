@@ -1,14 +1,14 @@
 import React from "react";
 
-const SubjectHorNav = (props) => {
+const SubjectHorNav = ({ heading, content }) => {
   return (
     <div className="horizontal">
       <div className="hor_navbar">
         <img src={require("../../assets/images/poster.jpg")} alt="Img" />
-        <h2>{props.heading}</h2>
+        <h2>{heading}</h2>
       </div>
       <hr style={{ width: "90%", marginTop: "0.2rem", marginLeft: "3rem" }} />
-      <div className="content">{props.content}</div>
+      <div className="content">{content}</div>
     </div>
   );
 };

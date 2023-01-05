@@ -6,10 +6,11 @@ import HomeContent from "../../components/school/HomeContent";
 
 const SubjectHome = () => {
   const params = useParams();
+  const subject = params.subject;
 
   return (
     <div className="bars">
-      <SubjectVerNav subjectName={params.subject} linkName="home" />
+      <SubjectVerNav subjectName={subject} linkName="home" />
       <SubjectHorNav heading="Home" content={<HomeContent />} />
     </div>
   );

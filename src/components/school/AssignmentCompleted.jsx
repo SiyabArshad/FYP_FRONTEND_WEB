@@ -8,7 +8,7 @@ const AssignmentContent = () => {
     { assignment: "Assignment 3", studentName: "XX-CS-11_22" },
     { assignment: "Assignment 4", studentName: "XX-CS-11_23" },
     { assignment: "Assignment 5", studentName: "XX-CS-11_24" },
-    { assignment: "Assignment 6", studentName: "XX-CS-11_25" },
+    { assignment: "Assignment 6", studentName: "XX-CS-11_251" },
     { assignment: "Assignment 7", studentName: "XX-CS-11_26" },
     { assignment: "Assignment 8", studentName: "XX-CS-11_27" },
     { assignment: "Assignment 9", studentName: "XX-CS-11_29" },

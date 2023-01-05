@@ -6,14 +6,15 @@ import SubjectVerNav from "../../components/school/SubjectVerNav";
 
 const SubjectGeneral = () => {
   const params = useParams();
+  const subject = params.subject;
 
   return (
     <>
       <div className="bars">
-        <SubjectVerNav subjectName={params.subject} />
+        <SubjectVerNav subjectName={subject} />
         <SubjectHorNav
           heading="General"
-          content={<GeneralContent subjectName={params.subject} />}
+          content={<GeneralContent subjectName={subject} />}
         />
       </div>
     </>

@@ -14,6 +14,9 @@
         height: calc(100vh - 65px);
         width: 20%;
         padding: 1rem;
+        .verNavBtn{
+            margin-right: .6rem;
+        }
         img{
             object-fit: fill;
             width: 60%;
@@ -91,6 +94,29 @@
             }
         }
     }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    .attendenceSheet{
+        margin: 1rem auto;
+        width: 800px;
+        border: 1px solid $blackc;
+        background: $lightgr;
+        color: $blackc;
+        tr{
+            height: 35px;
+        }
+    }
+    .attendenceDate{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1rem 3rem;
+          margin-right: 1.6rem;
+    }
+
+
 }
 
 .assigment{
@@ -203,3 +229,5 @@
         }
     }
   }
+
+  

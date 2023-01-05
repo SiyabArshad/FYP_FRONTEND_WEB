@@ -6,10 +6,11 @@ import SubjectVerNav from "../../components/school/SubjectVerNav";
 
 const SubjectAssignmentPending = () => {
   const params = useParams();
+  const subject = params.subject;
 
   return (
     <div className="bars">
-      <SubjectVerNav subjectName={params.subject} linkName="assignment" />
+      <SubjectVerNav subjectName={subject} linkName="assignment" />
       <SubjectHorNav heading="Assignments" content={<AssignmentPending />} />
     </div>
   );

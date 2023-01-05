@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import UpdateAssignment from "./UpdateAssignment";
+import CreateUpdateAssignment from "./CreateUpdateAssignment";
 
 const AssignmentPendingBar = (props) => {
   const [updatePendingAssignment, setUpdatePendingAssignment] = useState(false);
@@ -52,7 +52,7 @@ const AssignmentPendingBar = (props) => {
       </div>
       {updatePendingAssignment ? (
         <div style={{ position: "absolute", left: "0" }} className="adhmcspc">
-          <UpdateAssignment
+          <CreateUpdateAssignment
             btnName="Update Assignment"
             assignmentHeading={props.assignName}
             closeCreateComp={(state) => {

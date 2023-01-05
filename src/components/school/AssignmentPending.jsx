@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AssignmentPendingBar from "./AssignmentPendingBar";
-import UpdateAssignment from "./UpdateAssignment";
+import CreateUpdateAssignment from "./CreateUpdateAssignment";
+
 const AssignmentCompleted = () => {
   const [createAssignment, setCreateAssignment] = useState(false);
   const params = useParams();
@@ -64,17 +65,22 @@ const AssignmentCompleted = () => {
         {assignmentNames.map((name, i) => (
           <AssignmentPendingBar key={i} assignName={name} />
         ))}
-      </div>
-      {createAssignment ? (
-        <div style={{ position: "absolute", left: "0" }} className="adhmcspc">
-          <UpdateAssignment
-            btnName="Create Assignment"
-            closeCreateComp={(state) => {
-              setCreateAssignment(state);
-            }}
-          />
+        <div className="pendingContent">
+          {createAssignment ? (
+            <div
+              style={{ position: "absolute", left: "0" }}
+              className="adhmcspc"
+            >
+              <CreateUpdateAssignment
+                btnName="Create Assignment"
+                closeCreateComp={(state) => {
+                  setCreateAssignment(state);
+                }}
+              />
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
     </>
   );
 };

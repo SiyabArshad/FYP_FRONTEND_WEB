@@ -36,7 +36,7 @@ const HomeContent = () => {
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis
           minus molestias quas doloribus, culpa ipsum fugit voluptatibus
-          sapiente alias dolorem quaerat eveniet, iusto itaque consequuntur?
+          sapiente alias dolorem quaerat eveniet, iusto itaque consequuntur?H
           Facere officia minima nihil. Ut?
         </p>
         <div className="attendence">
