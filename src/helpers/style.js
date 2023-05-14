@@ -10,3 +10,5 @@ import "../stylesheets/events.scss";
 import "../stylesheets/classes.scss";
 import "../stylesheets/basiccomponents.scss";
 import "../stylesheets/SubjectDetail.scss";
+import "../stylesheets/accountmanager.scss";
+import "../stylesheets/LoginSignUp_RPage.scss";

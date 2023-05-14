@@ -1,0 +1,184 @@
+@import "./colors.scss";
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 65px);
+    background-color: #f2f2f2;
+}
+
+.login-container {
+    position: relative;
+    max-width: 400px;
+    height: 430px;
+    padding: 40px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type='email'],
+input[type='password'] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: $grey1;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+        background-color: $grey2;
+    }
+}
+
+button[type="recover"] {
+    background: none;
+    padding: 10px;
+    width: 100%;
+    color: $secondary;
+    border: none;
+    font-size: 12px;
+    margin-top: .4rem;
+    cursor: pointer;
+    max-width: 50%;
+    height: 30px;
+    margin-left: 24%;
+    transition: .2s linear;
+    &:hover {
+        color: $primary;
+    }
+}
+
+button[type="signup"] {
+    position: absolute;
+    padding: 10px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $secondary;
+    max-width: 50%;
+    height: 30px;
+    bottom: 10px;
+    right: 25%;
+    font-size: 14px;
+    transition: .2s linear;
+    &:hover {
+        color: $primary;
+    }
+}
+
+//------------- SignUp --------------------
+.sign-up-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    .sign-up-container {
+        max-width: 400px;
+        padding: 40px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333;
+                font-weight: bold;
+            }
+            input[type='text'],
+            input[type='email'],
+            input[type='password'] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: $grey1;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: .2s linear;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: $grey2;
+        }
+    }
+}
+
+//------------ recovery ---------------
+.email-input-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 65px);
+    background-color: #f2f2f2;
+    .email-input-container {
+        max-width: 400px;
+        padding: 40px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        .email-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+        .email-input::placeholder {
+            color: #aaa;
+        }
+        .email-input:focus {
+            outline: none;
+            border-color: #555;
+        }
+    }
+}
