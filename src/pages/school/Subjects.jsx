@@ -21,8 +21,8 @@ const Subject = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 4 }
+        />{" "} <
         div className = "adhmmain class_main" >
         <
         div className = "adhmsearch" >

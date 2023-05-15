@@ -13,51 +13,50 @@ export default function Studentspage() {
         setcsupbtn(state);
     };
     return ( <
-            >
-            <
-            HeasderSchool / >
-            <
-            div className = "adhmmain" >
-            <
-            div className = "adhmsearch" >
-            <
-            input type = "text"
-            placeholder = "SearchStudent" / >
-            <
-            /div>{" "} <
-            div className = "createschool" >
-            <
-            button onClick = {
-                () => setcsbtn(true)
-            } > Create Students < /button>{" "} < /
-            div > { " " } <
-            div className = "adhmschools" > { " " } {
-                [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
-                    (item, i) => ( <
-                        Studentscard closebutton = { closeupbuttoncs }
-                        key = { i }
-                        />
-                    )
+        >
+        <
+        HeasderSchool linknumber = { 2 }
+        />{" "} <
+        div className = "adhmmain" >
+        <
+        div className = "adhmsearch" >
+        <
+        input type = "text"
+        placeholder = "SearchStudent" / >
+        <
+        /div>{" "} <
+        div className = "createschool" >
+        <
+        button onClick = {
+            () => setcsbtn(true) } > Create Students < /button>{" "} <
+        /div>{" "} <
+        div className = "adhmschools" > { " " } {
+            [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
+                (item, i) => ( <
+                    Studentscard closebutton = { closeupbuttoncs }
+                    key = { i }
+                    />
                 )
-            } { " " } <
-            /div>{" "} {
+            )
+        } { " " } <
+        /div>{" "} {
             csbtn ? ( <
                 div className = "adhmcspc" >
                 <
                 CreateStudent closebutton = { closebuttoncs }
-                />{" "} < /
-                div >
+                />{" "} <
+                /div>
             ) : null
         } { " " } {
             csupbtn ? ( <
                 div className = "adhmcspc" >
                 <
                 UpdateStudent closebutton = { closeupbuttoncs }
-                />{" "} < /
-                div >
+                />{" "} <
+                /div>
             ) : null
         } { " " } <
-        /div>{" "} < /
-        >
-);
+        /div>{" "} <
+        />
+    );
 }

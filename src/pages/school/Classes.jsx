@@ -23,8 +23,8 @@ const Classes = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 4 }
+        />{" "} <
         div className = "adhmmain class_main" >
         <
         div className = "adhmsearch" >
@@ -32,12 +32,12 @@ const Classes = () => {
         input type = "text"
         placeholder = "Search Classes" / >
         <
-        /div> <
+        /div>{" "} <
         div className = "createschool" >
         <
         button onClick = {
             () => setCreateClass(true) } > Create Class < /button>{" "} <
-        /div> <
+        /div>{" "} <
         div className = "adhmschools" > { " " } {
             classes.map((data, i) => ( <
                 ClassCard choose = "classes"

@@ -18,13 +18,14 @@ const Confirmation = () => {
     const handleConfirmation = () => {
         // Perform any necessary actions upon confirmation
         console.log("Payment confirmed!");
+
     };
 
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 5 }
+        />{" "} <
         section >
         <
         h2 className = "paymentheading" > { " " }

@@ -19,8 +19,8 @@ const AccountManager = () => {
 
     return ( <
         > { " " } <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 5 }
+        />{" "} <
         section className = "container" >
         <
         div className = "pagenamediv" >

@@ -19,7 +19,8 @@ export default function HeasderSchool(prop) {
             )
         } { " " } <
         /div>{" "} <
-        SchoolNavigation menustate = { isOpenmenu }
+        SchoolNavigation activelink = { prop.linknumber }
+        menustate = { isOpenmenu }
         />{" "} <
         /div>
     );

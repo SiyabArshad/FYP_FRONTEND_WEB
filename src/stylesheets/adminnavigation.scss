@@ -1,10 +1,11 @@
 @import "colors";
 @import "fonts";
-.haadminparent{
+.haadminparent {
     position: relative;
     background-color: $primary;
 }
-.adminnavdiv1{
+
+.adminnavdiv1 {
     background-color: $secondary;
     position: absolute;
     right: 0%;
@@ -14,20 +15,22 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     z-index: 10;
     transition: transform .8s ease;
-    ul{
+    ul {
         list-style: none;
-        
-        li{
+        li {
             padding: .7rem 1rem;
-            margin-bottom:.5rem;
+            margin-bottom: .5rem;
             transition: .5s;
             cursor: pointer;
-            span{
+            &:hover {
+                background: #0BCF6D;
+            }
+            span {
                 margin-left: .5rem;
                 font-family: $Roboto_regular;
                 color: $whitec;
             }
-            i{
+            i {
                 color: $whitec;
             }
         }

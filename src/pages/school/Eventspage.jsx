@@ -9,8 +9,8 @@ export default function Eventspage() {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 3 }
+        />{" "} <
         div className = "adhmmain" >
         <
         div className = "adhmsearch" >

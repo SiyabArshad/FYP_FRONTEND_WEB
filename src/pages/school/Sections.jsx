@@ -20,8 +20,8 @@ const Sections = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 4 }
+        />{" "} <
         div className = "adhmmain class_main" >
         <
         div className = "adhmsearch" >
@@ -30,7 +30,7 @@ const Sections = () => {
         placeholder = "Search Section" / >
         <
         /div>{" "} <
-        h1 className = "SSheading" > { params.class } < /h1> <
+        h1 className = "SSheading" > { params.class } < /h1>{" "} <
         div className = "adhmschools" > { " " } {
             sections.map((data, i) => ( <
                 ClassCard choose = "sections"

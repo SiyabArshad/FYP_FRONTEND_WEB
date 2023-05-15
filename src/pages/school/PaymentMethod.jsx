@@ -9,8 +9,8 @@ const PaymentMethod = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 5 }
+        />{" "} <
         section >
         <
         h2 className = "paymentheading" > Account Manager / Payment Method < /h2>{" "} <

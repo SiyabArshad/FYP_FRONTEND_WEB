@@ -5,8 +5,8 @@ export default function SchoolHome() {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 0 }
+        />{" "} <
         div className = "schoolmndiv" >
         <
         div className = "schooldiv2" >

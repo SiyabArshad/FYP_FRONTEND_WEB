@@ -12,8 +12,8 @@ const SubjectGeneral = () => {
         return ( <
             >
             <
-            HeasderSchool / >
-            <
+            HeasderSchool linknumber = { 4 }
+            />{" "} <
             div className = "bars" >
             <
             SubjectVerNav subjectName = { subject }

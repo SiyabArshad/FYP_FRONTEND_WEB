@@ -14,8 +14,8 @@ export default function Expenses() {
     };
     return ( <
         > { " " } <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 8 }
+        />{" "} <
         div className = "adhmmain" >
         <
         div className = "adhmsearch" >

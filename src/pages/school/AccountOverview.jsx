@@ -158,8 +158,8 @@ const AccountOverview = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 5 }
+        />{" "} <
         section className = "overview" >
         <
         div className = "bal_sum" >

@@ -15,8 +15,8 @@ export default function Employees() {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 1 }
+        />{" "} <
         div className = "adhmmain" >
         <
         div className = "adhmsearch" >

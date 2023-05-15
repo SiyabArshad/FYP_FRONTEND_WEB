@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-export default function SchoolNavigation({ menustate }) {
+export default function SchoolNavigation({ activelink, menustate }) {
     const menuitems = [{
             name: "Home",
             url: "/schoolhome",
@@ -42,7 +42,7 @@ export default function SchoolNavigation({ menustate }) {
             url: "/",
         },
     ];
-    const [currmenu, setcurrmenu] = React.useState();
+    //   const [currmenu, setcurrmenu] = React.useState(linknumber);
     return ( <
         div style = {
             { transform: menustate ? "translateX(0)" : "translateX(100%)" } }
@@ -54,10 +54,10 @@ export default function SchoolNavigation({ menustate }) {
                 to = { item.url }
                 className = "link" >
                 <
-                li onClick = {
-                    () => setcurrmenu(i) }
+                li
+                //   onClick={() => setcurrmenu(i)}
                 style = {
-                    { backgroundColor: i === currmenu && "#0BCF6D" } } >
+                    { backgroundColor: i === activelink && "#0BCF6D" } } >
                 <
                 span > { item.name } < /span>{" "} <
                 /li>{" "} <

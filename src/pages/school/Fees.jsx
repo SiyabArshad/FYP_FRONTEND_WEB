@@ -14,52 +14,50 @@ export default function Fees() {
         setcsupbtn(state);
     };
     return ( <
-            >
-            { " " } <
-            HeasderSchool / >
-            <
-            div className = "adhmmain" >
-            <
-            div className = "adhmsearch" >
-            <
-            input type = "text"
-            placeholder = "SearchStudent" / >
-            <
-            /div>{" "} <
-            Feesectionmenubar > < /Feesectionmenubar>{" "} <
-            div className = "createschool" >
-            <
-            button onClick = {
-                () => setcsbtn(true)
-            } > Add Fee < /button>{" "} < /
-            div > { " " } <
-            div className = "adhmschools" > { " " } {
-                [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
-                    (item, i) => ( <
-                        Feecard closebutton = { closeupbuttoncs }
-                        key = { i }
-                        />
-                    )
+        > { " " } <
+        HeasderSchool linknumber = { 6 }
+        />{" "} <
+        div className = "adhmmain" >
+        <
+        div className = "adhmsearch" >
+        <
+        input type = "text"
+        placeholder = "SearchStudent" / >
+        <
+        /div>{" "} <
+        Feesectionmenubar > < /Feesectionmenubar>{" "} <
+        div className = "createschool" >
+        <
+        button onClick = {
+            () => setcsbtn(true) } > Add Fee < /button>{" "} <
+        /div>{" "} <
+        div className = "adhmschools" > { " " } {
+            [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
+                (item, i) => ( <
+                    Feecard closebutton = { closeupbuttoncs }
+                    key = { i }
+                    />
                 )
-            } { " " } <
-            /div>{" "} {
+            )
+        } { " " } <
+        /div>{" "} {
             csbtn ? ( <
                 div className = "adhmcspc" >
                 <
                 CreateFee closebutton = { closebuttoncs }
-                />{" "} < /
-                div >
+                />{" "} <
+                /div>
             ) : null
         } { " " } {
             csupbtn ? ( <
                 div className = "adhmcspc" >
                 <
                 UpdateFee closebutton = { closeupbuttoncs }
-                />{" "} < /
-                div >
+                />{" "} <
+                /div>
             ) : null
         } { " " } <
-        /div>{" "} < /
-        >
-);
+        /div>{" "} <
+        />
+    );
 }

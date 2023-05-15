@@ -6,8 +6,8 @@ const Invoice = () => {
     return ( <
         >
         <
-        HeasderSchool / >
-        <
+        HeasderSchool linknumber = { 5 }
+        />{" "} <
         section className = "invoice_section" >
         <
         h2 > Account Manager / Invoice < /h2>{" "} <
