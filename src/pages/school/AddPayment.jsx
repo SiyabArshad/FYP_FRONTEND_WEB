@@ -21,6 +21,8 @@ const AddPayment = ({ paymenttype }) => {
             console.log("Month:", month);
             console.log("Late Fee:", lateFee);
             console.log("Other Charges:", otherCharges);
+
+            Navigation("/accountmanager/paymentmethod/addpayment/confirmation");
         };
 
         return ( <
@@ -114,22 +116,11 @@ const AddPayment = ({ paymenttype }) => {
                 /div>{" "} <
                 div className = "lastbtnarea" >
                     <
-                    button
-                onClick = {
-                    () => {
-                        Navigation(
-                            "/accountmanager/paymentmethod/addpayment/confirmation"
-                        );
-                    }
-                }
-                type = "submit" >
-                    { " " }
-                Next { " " } <
-                /button>{" "} <
-                /div>{" "} <
-                /form>{" "} <
-                /section>{" "} <
-                />
+                    button type = "submit" > Next < /button>{" "} <
+                    /div>{" "} <
+                    /form>{" "} <
+                    /section>{" "} <
+                    />
             );
         };
 

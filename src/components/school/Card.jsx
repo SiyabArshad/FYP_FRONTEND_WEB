@@ -16,6 +16,8 @@ const CardForm = () => {
         console.log("Card Number:", cardNumber);
         console.log("Expiry Date:", expiryDate);
         console.log("CCV:", ccv);
+
+        navigate("/accountmanager/paymentmethod/addpayment");
     };
 
     return ( <
@@ -68,15 +70,7 @@ const CardForm = () => {
         /div>{" "} <
         div className = "lastbtnarea" >
         <
-        button onClick = {
-            () => {
-                navigate("/accountmanager/paymentmethod/addpayment");
-            }
-        }
-        type = "submit" >
-        { " " }
-        Proceed { " " } <
-        /button>{" "} <
+        button type = "submit" > Proceed < /button>{" "} <
         /div>{" "} <
         /form>
     );
