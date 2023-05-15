@@ -1,7 +1,15 @@
 import * as React from "react";
 import CreateResult from "../../components/school/CreateResult";
 import HeasderSchool from "../../components/school/HeasderSchool";
+import ShowMoreBtn from "../../components/school/ShowMoreBtn";
 export default function Results() {
+    const [resultData, setResultData] = React.useState([
+        1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3, 1, 2, 3, 4, 5, 5, 6,
+        67, 8, 89, 3, 5, 6, 4, 7, 89, 3,
+    ]);
+    const [displayedResultData, setDisplayedResultData] = React.useState(
+        resultData.slice(0, 10)
+    );
     const [csbtn, setcsbtn] = React.useState(false);
     const closebuttoncs = (state) => {
         setcsbtn(state);
@@ -24,10 +32,7 @@ export default function Results() {
             () => setcsbtn(true) } > Create Result < /button>{" "} <
         /div>{" "} <
         div className = "parentallevent" > { " " } {
-            [
-                1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3, 1, 2, 3, 4, 5,
-                5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3,
-            ].map((item, i) => ( <
+            displayedResultData.map((item, i) => ( <
                 div className = "eventsall" >
                 <
                 span > { " " }
@@ -41,7 +46,10 @@ export default function Results() {
                 /div>
             ))
         } { " " } <
-        /div>{" "} {
+        /div>{" "} <
+        ShowMoreBtn data = { resultData }
+        setDisplayedData = { setDisplayedResultData }
+        />{" "} {
             csbtn ? ( <
                 div className = "adhmcspc" >
                 <

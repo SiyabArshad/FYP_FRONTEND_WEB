@@ -1,17 +1,37 @@
 @import "colors";
 @import "fonts";
-.adhmmain{
+.adhmmain {
     position: relative;
-    height: 100vh;
-  overflow: hidden;
+    // height: 120vh;
+    overflow: hidden;
 }
-.adhmsearch{
+
+.showmoreBtndiv {
+    display: flex;
+    justify-content: center;
+    .showmorebtn,
+    .nomoredata {
+        color: $whitec;
+        align-items: center;
+        background: none;
+        border-width: 0;
+        padding: 2rem;
+        font-size: 20px;
+        transition: .2s linear;
+    }
+    .showmorebtn:hover {
+        cursor: pointer;
+        color: $secondary;
+    }
+}
+
+.adhmsearch {
     padding: 1rem 1rem;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    input{
+    input {
         width: 70%;
         padding: .5rem 1rem;
         outline: none;
@@ -24,21 +44,24 @@
         font-family: $Roboto_regular;
     }
 }
-.adhmschools{
+
+.adhmschools {
     height: 80%;
+    margin: 0rem 1rem;
     padding: .5rem 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: scroll;
-  }
-.createschool{
+}
+
+.createschool {
     padding: 1rem 2rem;
     display: flex;
     flex-direction: row;
     justify-content: end;
-    button{
+    button {
         background-color: $secondary;
         padding: .5rem 1rem;
         border-radius: .4rem;
@@ -49,7 +72,8 @@
         cursor: pointer;
     }
 }
-.adhmcspc{
+
+.adhmcspc {
     background-color: rgba($color: $blackc, $alpha: 0.5);
     display: flex;
     justify-content: center;
@@ -59,9 +83,7 @@
     position: absolute;
     top: 0;
 }
-@media screen and ( max-width:500px ) {
-    
-}
-@media only screen and (max-width: 850px) and (min-width: 500px) {
-    
-}
+
+@media screen and ( max-width:500px) {}
+
+@media only screen and (max-width: 850px) and (min-width: 500px) {}

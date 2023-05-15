@@ -3,7 +3,14 @@ import UpdateExpense from "../../components/school/UpdateExpense";
 import Expensecard from "../../components/school/Expensecard";
 import CreateExpense from "../../components/school/CreaetExpense";
 import HeasderSchool from "../../components/school/HeasderSchool";
+import ShowMoreBtn from "../../components/school/ShowMoreBtn";
 export default function Expenses() {
+    const [expenseData, setExpenseData] = React.useState([
+        1, 2, 3, 4, 5, 5, 6, 67, 4, 7, 2, 4, 6, 3, 4, 8, 89, 3, 5, 6, 4, 7, 89, 3,
+    ]);
+    const [displayedExpenseData, setDisplayedExpenseData] = React.useState(
+        expenseData.slice(0, 15)
+    );
     const [csbtn, setcsbtn] = React.useState(false);
     const [csupbtn, setcsupbtn] = React.useState(false);
     const closebuttoncs = (state) => {
@@ -29,15 +36,16 @@ export default function Expenses() {
             () => setcsbtn(true) } > Add Expense < /button>{" "} <
         /div>{" "} <
         div className = "adhmschools" > { " " } {
-            [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
-                (item, i) => ( <
-                    Expensecard closebutton = { closeupbuttoncs }
-                    key = { i }
-                    />
-                )
-            )
+            displayedExpenseData.map((item, i) => ( <
+                Expensecard closebutton = { closeupbuttoncs }
+                key = { i }
+                />
+            ))
         } { " " } <
-        /div>{" "} {
+        /div>{" "} <
+        ShowMoreBtn data = { expenseData }
+        setDisplayedData = { setDisplayedExpenseData }
+        />{" "} {
             csbtn ? ( <
                 div className = "adhmcspc" >
                 <

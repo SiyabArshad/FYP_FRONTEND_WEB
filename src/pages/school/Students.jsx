@@ -3,7 +3,15 @@ import CreateStudent from "../../components/school/CreateStudent";
 import Studentscard from "../../components/school/Studentscard";
 import UpdateStudent from "../../components/school/UpdateStudent";
 import HeasderSchool from "../../components/school/HeasderSchool";
+import ShowMoreBtn from "../../components/school/ShowMoreBtn";
+import { useState } from "react";
 export default function Studentspage() {
+    const [studentData, setStudentData] = useState([
+        1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3,
+    ]);
+    const [displayedStudentData, setDisplayedStudentData] = useState(
+        studentData.slice(0, 10)
+    );
     const [csbtn, setcsbtn] = React.useState(false);
     const [csupbtn, setcsupbtn] = React.useState(false);
     const closebuttoncs = (state) => {
@@ -31,15 +39,16 @@ export default function Studentspage() {
             () => setcsbtn(true) } > Create Students < /button>{" "} <
         /div>{" "} <
         div className = "adhmschools" > { " " } {
-            [1, 2, 3, 4, 5, 5, 6, 67, 8, 89, 3, 5, 6, 4, 7, 89, 3].map(
-                (item, i) => ( <
-                    Studentscard closebutton = { closeupbuttoncs }
-                    key = { i }
-                    />
-                )
-            )
+            displayedStudentData.map((item, i) => ( <
+                Studentscard closebutton = { closeupbuttoncs }
+                key = { i }
+                />
+            ))
         } { " " } <
-        /div>{" "} {
+        /div>{" "} <
+        ShowMoreBtn data = { studentData }
+        setDisplayedData = { setDisplayedStudentData }
+        />{" "} {
             csbtn ? ( <
                 div className = "adhmcspc" >
                 <
