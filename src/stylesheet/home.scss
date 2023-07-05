@@ -1,0 +1,282 @@
+@import "./colors.scss";
+
+.homesection {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 21%;
+    margin-right: 3rem;
+    .active {
+      background: $green;
+      border: 1px solid $green;
+      border-radius: 0.7rem;
+      li {
+        color: white;
+      }
+    }
+    li {
+      list-style: none;
+      text-transform: uppercase;
+      font-size: 18px;
+      transition: 0.3s linear;
+      color: $black;
+      border-radius: 0.7rem;
+      border-color: $green;
+      padding: 0.5rem;
+      &:hover {
+        color: $white;
+        background: $green;
+      }
+    }
+  }
+  .homearea {
+    height: calc(100vh - 132px);
+    display: flex;
+    .verticalnavbar {
+      width: 20%;
+      height: calc(100vh - 132px);
+      border: 1px solid green;
+      border-top-left-radius: 1rem;
+
+      margin-left: 1rem;
+      box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+      -webkit-box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+      -moz-box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+
+      ul {
+        margin: 1.5rem;
+        gap: 0.7rem;
+        width: 89.534%;
+        display: flex;
+        flex-direction: column;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        position: relative;
+        .lastchild:last-child {
+          position: absolute;
+          bottom: -89px;
+          width: 100%;
+        }
+        .active {
+          background: $green;
+          border: 1px solid $green;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+          li {
+            color: white;
+          }
+        }
+        li:hover {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+    .entry {
+      margin: 0 2rem;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+    .content {
+      width: 100%;
+      height: calc(100vh - 132px);
+      background: $green;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+      .expenseform{
+        background-color: $white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-bottom: .8rem;
+        .btn {
+          margin-left: 13rem;
+          margin-top: 0.8rem;
+          background: $greenc;
+          transition: 0.2s linear;
+          &:hover {
+            background: $green;
+          }
+        }
+
+      }
+      .admindata{
+        margin-top:5rem;
+        .btn {
+          margin-left: 13rem;
+          margin-top: 0.8rem;
+          background: $greenc;
+          transition: 0.2s linear;
+          &:hover {
+            background: $green;
+          }
+        }
+
+      }
+      .adminform {
+        background-color: $white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 16rem;
+        margin-bottom: 2rem;
+        .btn {
+          margin-left: 14rem;
+          margin-top: 0.8rem;
+          background: $greenc;
+          transition: 0.2s linear;
+          &:hover {
+            background: $green;
+          }
+        }
+      }
+      .ST-container {
+        form {
+          height: 200px;
+          width: 50%;
+          display: flex;
+          margin: 0 auto;
+          align-items: flex-end;
+        }
+        .ST-data {
+          display: flex;
+          flex-wrap: wrap;
+          height: 500px;
+
+          .ST-details {
+            width: 30%;
+            margin: 0.8rem 1rem;
+            text-transform: uppercase;
+
+            transition: 0.3s linear;
+            &:hover {
+              background: $green;
+              color: $white;
+            }
+          }
+          .btns {
+            margin: auto;
+            padding: 10px;
+
+            Button {
+              transition: 0.2s linear;
+              &:hover {
+                background: $green;
+              }
+            }
+          }
+        }
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form {
+          background: white;
+          margin-top: 20rem;
+          margin-bottom: 2rem;
+          border-radius: 1rem;
+          padding: 2rem;
+          width: 50%;
+          text-align: center;
+          button {
+            background: $greenc;
+            transition: 0.2s linear;
+            &:hover {
+              background: $green;
+            }
+          }
+        }
+        .teacherform {
+          margin-top: 9rem;
+        }
+      }
+      .dashboard {
+        margin: 3rem 0;
+        .expense_select {
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          h2 {
+            font-size: 30px;
+            color: $lightgrey;
+          }
+        }
+        .chart {
+          height: 400px;
+          width: 900px;
+          background: $lightgrey;
+          border-radius: 1rem;
+        }
+        .tabs {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: space-between;
+          margin-top: 250px;
+          margin-bottom: 30px;
+          .tab:nth-child(3) {
+            background: $lightred;
+          }
+          .tab {
+            border-radius: 1rem;
+            height: 150px;
+            background: #f1e15b;
+            text-align: center;
+            transition: 0.2s linear;
+            &:hover {
+              transform: scale(1.02);
+              box-shadow: -8px 10px 5px -3px rgba(187, 187, 187, 0.38);
+              -webkit-box-shadow: -8px 10px 5px -3px rgba(212, 212, 212, 0.38);
+              -moz-box-shadow: -8px 10px 5px -3px rgba(191, 194, 193, 0.38);
+            }
+            h3 {
+              font-size: 50px;
+              color: $green;
+            }
+            .img-title {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 0.7rem;
+              padding: 0.5rem;
+              img {
+                height: 50px;
+                width: 50px;
+                border-radius: 1.2rem;
+              }
+              h5 {
+                font-size: 28px;
+                color: $grey;
+              }
+            }
+          }
+        }
+      }
+      h1 {
+        .digi {
+          color: $black;
+        }
+      }
+    }
+    .content::-webkit-scrollbar {
+      width: 8px; /* Set the width of the scrollbar */
+    }
+
+    .content::-webkit-scrollbar-track {
+      background-color: $lightgrey; /* Set the background color of the scrollbar track */
+    }
+
+    .content::-webkit-scrollbar-thumb {
+      background-color: $greenc; /* Set the color of the scrollbar thumb */
+    }
+
+    .content::-webkit-scrollbar-thumb:hover {
+      background-color: $green; /* Set the color of the scrollbar thumb on hover */
+    }
+  }
+}

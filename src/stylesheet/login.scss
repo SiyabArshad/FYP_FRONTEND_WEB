@@ -1,0 +1,140 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+//------------ Header ----------------
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85.3rem;
+  height: 8.2rem;
+  position: relative;
+  .logo {
+    height: 8.2rem;
+  }
+  .headertext {
+    position: absolute;
+    left: 6.6rem;
+    top: 2.3rem;
+    font-size: 32px;
+    font-family: $Roboto_semibolditalic;
+    color: $black;
+    .headerschooltxt {
+      color: $green;
+    }
+  }
+}
+
+//--------------- login / Starter -------------------
+
+.loginarea {
+  height: calc(100vh - 8.2rem);
+  margin: 0 20%;
+  .mainarea {
+    display: flex;
+    justify-content: space-between;
+    background: $white;
+    border-radius: 0.7rem;
+    height: 28rem;
+    width: 100%;
+    box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+    -webkit-box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+    -moz-box-shadow: -8px 10px 5px -3px rgba(40, 94, 79, 0.38);
+    .inputarea {
+      width: 50%;
+      position: relative;
+      .starter {
+        position: absolute;
+        top: 0;
+        background: $green;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        border-top-left-radius: 0.7rem;
+        border-bottom-left-radius: 0.7rem;
+        font-size: 20px;
+        transition: 0.4s linear;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h2 {
+          color: $white;
+        }
+        h5 {
+          color: $lightgr;
+        }
+      }
+      .slideright {
+        transform: translateX(100%);
+        z-index: -1;
+        border-top-right-radius: 0.7rem;
+        border-bottom-right-radius: 0.7rem;
+      }
+      .login {
+        height: 150px;
+        text-align: center;
+        font-family: $Roboto_bolditalic;
+        color: $green;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+      }
+      .inputs {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 3.4rem;
+        gap: 1rem;
+
+        .loginBtn {
+          width: 50%;
+          align-self: center;
+          background: $black;
+          transition: 0.2s linear;
+          margin-top: 1rem;
+          &:hover {
+            background: $green;
+          }
+        }
+        .rememberBtn {
+          margin-top: 7.4rem;
+          font-size: 12px;
+          width: 80%;
+          align-self: center;
+          transition: 0.2s linear;
+          color: $black;
+          &:hover {
+            color: $green;
+          }
+        }
+        .forgetBtn {
+          margin-top: 3rem;
+          font-size: 12px;
+          width: 60%;
+          align-self: center;
+          transition: 0.2s linear;
+          color: $black;
+          &:hover {
+            color: $green;
+          }
+        }
+      }
+    }
+    .loginimg {
+      width: 50%;
+      height: 448px;
+      border-top-right-radius: 0.7rem;
+      border-bottom-right-radius: 0.7rem;
+      object-fit: cover;
+      z-index: 25;
+    }
+  }
+}
