@@ -17,13 +17,31 @@ import Login from "./pages/login_signup/Login";
 import Classes from "./pages/school/Classes";
 import Assignments from "./components/Assignments";
 import Home from "./pages/school/Home";
+import NotFound from "./pages/NotFound";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-
+import store from "../src/redux/store"
+import { Provider } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import React from "react";
 function App() {
+
   return (
-    <BrowserRouter>
+    <Provider store={store}>
+      <AppRoutes/>
+    </Provider>
+  );
+}
+
+const AppRoutes=()=>{
+  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
+    return(
+      <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        {
+          !isAuthenticated||currentUser===null||currentUser===undefined?
+          <Route path="/" element={<Login />} />
+:
+          <React.Fragment>
         <Route path="/home" element={<Home />} />
         <Route path="/accountmanager" element={<AccountManager />} />
         <Route path="/students" element={<Student />} />
@@ -42,9 +60,12 @@ function App() {
         <Route path="/:id/attendence" element={<Attendence/>} />
         <Route path="/:id/grades" element={<Grades/>} />
         <Route path="/:id/addgrades" element={<AddGrades/>} />
+        </React.Fragment>
+        }
+        <Route path="*" element={<NotFound/>}/>
+
       </Routes>
     </BrowserRouter>
-  );
+    )  
 }
-
 export default App;
