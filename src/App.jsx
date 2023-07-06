@@ -23,6 +23,7 @@ import store from "../src/redux/store"
 import { Provider } from 'react-redux';
 import { useSelector,useDispatch } from 'react-redux';
 import React from "react";
+import ResetPassword from "./pages/ResetPassword";
 function App() {
 
   return (
@@ -34,15 +35,19 @@ function App() {
 
 const AppRoutes=()=>{
   const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
+  console.log(isAuthenticated,currentUser)
     return(
       <BrowserRouter>
       <Routes>
         {
           !isAuthenticated||currentUser===null||currentUser===undefined?
+          <>
           <Route path="/" element={<Login />} />
-:
-          <React.Fragment>
-        <Route path="/home" element={<Home />} />
+          <Route path="/uetcs/passwordreset/:id" element={<ResetPassword />} />
+          </>
+          :
+          <>
+        <Route path="/" element={<Home />} />
         <Route path="/accountmanager" element={<AccountManager />} />
         <Route path="/students" element={<Student />} />
         <Route path="/teachers" element={<Teacher />} />
@@ -60,7 +65,7 @@ const AppRoutes=()=>{
         <Route path="/:id/attendence" element={<Attendence/>} />
         <Route path="/:id/grades" element={<Grades/>} />
         <Route path="/:id/addgrades" element={<AddGrades/>} />
-        </React.Fragment>
+        </>
         }
         <Route path="*" element={<NotFound/>}/>
 
