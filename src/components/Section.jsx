@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 
-
+import {useSelector,useDispatch} from "react-redux"
 
 const Section = () => {
     const param=useParams();

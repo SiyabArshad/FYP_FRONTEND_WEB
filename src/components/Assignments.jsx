@@ -3,7 +3,7 @@ import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import AssignmentData from "./AssignmentData";
-
+import {useSelector,useDispatch} from "react-redux"
 
 const Assignments = () => {
     const param = useParams();

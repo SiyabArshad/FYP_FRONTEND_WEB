@@ -14,6 +14,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+html  ::-webkit-scrollbar {
+    display: none;
+  }
 
 a {
   font-weight: 500;
@@ -30,6 +33,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide the scrollbar for Webkit-based browsers */
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {

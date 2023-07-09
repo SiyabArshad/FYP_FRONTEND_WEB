@@ -1,5 +1,5 @@
 import VerticalNav from "./VerticalNav";
-
+import {useSelector,useDispatch} from "react-redux"
 const Data = ({VerticalNavData,data,active}) => {
   
   return (

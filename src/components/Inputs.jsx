@@ -38,9 +38,9 @@ const LoginFunction=async()=>{
   setindicator(true)
   try{
       const {data}=await http.post("/login",{email,password})
-      if(data?.success===true)
+      if(data?.success===true&&data?.data?.role==="admin"||data?.data?.role==="teacher")
       {
-        dispatch(login(data?.data?.token))
+        dispatch(login(data?.data))
        }
       else
       {

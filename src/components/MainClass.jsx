@@ -3,7 +3,7 @@ import ClassHome from "./ClassHome";
 import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
-
+import {useSelector,useDispatch} from "react-redux"
 
 const MainClass = () => {
     const param = useParams();

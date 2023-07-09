@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import {Search as SearchIcon} from "@mui/icons-material";
 import SubjectSelect from "./SubjectSelect";
-
+import {useSelector,useDispatch} from "react-redux"
 const TeacherData = () => {
   const [searchText, setSearchText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);

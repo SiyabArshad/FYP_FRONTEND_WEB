@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import {Search as SearchIcon} from "@mui/icons-material";
 import ClassSectionSelect from "./ClassSectionSelect";
-
+import {useSelector,useDispatch} from "react-redux"
 const StudentData = () => {
   const [searchText, setSearchText] = useState("");
   const [studentData, setStudentData] = useState([

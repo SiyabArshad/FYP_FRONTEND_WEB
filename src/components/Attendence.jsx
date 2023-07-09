@@ -4,7 +4,7 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import AttendanceTable from "./AttendTable";
 
-
+import {useSelector,useDispatch} from "react-redux"
 const Attendence = () => {
     const param = useParams();
   const VerticalNavData = [

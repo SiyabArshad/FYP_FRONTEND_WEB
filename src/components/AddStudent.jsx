@@ -2,9 +2,11 @@ import AddStudentForm from "./AddStudentForm";
 import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
-
+import {useSelector,useDispatch} from "react-redux"
 const AddStudent = () => {
-  const VerticalNavData = [
+  
+  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
+  const VerticalNavData = currentUser?.admin?[
     {name: "Dashboard", url: "/accountmanager"},
     {name: "Students", url: "/students"},
     {name: "Teachers", url: "/teachers"},
@@ -12,9 +14,14 @@ const AddStudent = () => {
     {name: "Add Teacher", url: "/addTeacher"},
     {name: "Add Admin", url: "/addAdmin"},
     {name: "Add Expense", url: "/expense"},
-    {name: "User/Admin", url: "/user"},
-  ];
-  
+    {name: "User", url: "/user"},
+  ]:
+  [
+    {name: "Students", url: "/students"},
+    {name: "Teachers", url: "/teachers"},
+    {name: "User", url: "/user"},
+  ]
+  ;
   return (
     <>
       <div className="homesection">

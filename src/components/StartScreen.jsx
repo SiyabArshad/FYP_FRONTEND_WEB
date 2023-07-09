@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-
+import {useSelector,useDispatch} from "react-redux"
 const StartScreen = () => {
   const [isStarter, setIsStarter] = useState(true);
 

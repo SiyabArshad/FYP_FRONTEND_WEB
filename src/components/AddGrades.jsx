@@ -3,7 +3,7 @@ import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import AddGradesData from "./AddGradesData";
-
+import {useSelector,useDispatch} from "react-redux"
 
 const AddGrades = () => {
     const param = useParams();

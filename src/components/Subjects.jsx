@@ -3,7 +3,7 @@ import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Subject from "./Subject";
-
+import {useSelector,useDispatch} from "react-redux"
 
 const Subjects = () => {
   const param= useParams();

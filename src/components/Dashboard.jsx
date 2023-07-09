@@ -5,7 +5,7 @@ import students from "../assets/students.png";
 import teacher from "../assets/teacher.png";
 import expense from "../assets/budget.png";
 import SelectField from "./SelectField";
-
+import {useSelector,useDispatch} from "react-redux"
 const Dashboard = () => {
   let studentsnumber = 1000;
   let teachernumber = 100;

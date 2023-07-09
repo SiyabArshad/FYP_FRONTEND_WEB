@@ -1,34 +1,34 @@
 import  { useState } from 'react';
-import { TextField, Button, Container, Typography ,Input } from '@mui/material';
+import { TextField, Button, Container, Typography ,Input,CircularProgress } from '@mui/material';
+import {useSelector,useDispatch} from "react-redux"
+import http from "../utils/http"
 
 const AddAdminForm = () => {
+  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
   const [name, setName] = useState('');
-  const [fatherName, setFatherName] = useState('');
-  const [cnic, setCnic] = useState('');
+  const [phone, setphone] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [load,setload]=useState(false)
+  
+  const handleSubmit = async(e) => {
+    setload(true)
+    event.preventDefault();
+    try{
+      await http.post("/createuser",{name,email,phone,address,password,role:"admin",admin:true},{headers:{
+        token:currentUser?.token
+      }})
+      alert("Added")
+    } 
+    catch(e){
+      console.log(e)
+      alert("Failed")
+    }
+    finally{
+      setload(false)
+    }
 
-  const handlePictureChange = (event) => {
-    const file = event.target.files[0];
-    setProfilePicture(file);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Perform your form submission logic here
-    // For example, you can send the form data to an API endpoint
-
-    // Reset the form fields
-    setName('');
-    setFatherName('');
-    setCnic('');
-    setAddress('');
-    setEmail('');
-    setPassword('');
-    setProfilePicture(null);
   };
 
   return (
@@ -47,24 +47,19 @@ const AddAdminForm = () => {
           required
         />
         <TextField
-          label="Father's Name"
+        type='number'
+          label="Contact No"
           fullWidth
-          value={fatherName}
-          onChange={(e) => setFatherName(e.target.value)}
+          value={phone}
+          onChange={(e) => setphone(e.target.value)}
           margin="normal"
           variant="outlined"
           required
+          
         />
+        
         <TextField
-          label="CNIC"
-          fullWidth
-          value={cnic}
-          onChange={(e) => setCnic(e.target.value)}
-          margin="normal"
-          variant="outlined"
-          required
-        />
-        <TextField
+
           label="Address"
           fullWidth
           value={address}
@@ -74,6 +69,7 @@ const AddAdminForm = () => {
           required
         />
         <TextField
+          type='email'
           label="Email"
           fullWidth
           value={email}
@@ -92,28 +88,17 @@ const AddAdminForm = () => {
           variant="outlined"
           required
         />
-        <Input
-        required
-          type="file"
-          onChange={handlePictureChange}
-          inputProps={{
-            accept: 'image/*',
-            id: 'profile-picture',
-          }}
-          style={{ display: 'none' }}
-        />
-        <div style={{width:"35rem",padding:"5px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-
-        {profilePicture!==null ? <Typography sx={{maxWidth:"60%",color:"#000000"}}>{profilePicture.name}</Typography>:<Typography sx={{color:"#6B6B6B"}}>No Image Insert</Typography>}
-        <label htmlFor="profile-picture">
-          <Button component="span"  color="primary">
-            Upload Picture
-          </Button>
-        </label>
-        </div>
-        <Button  className='btn' type="submit" variant="contained" color="primary">
-          Add Admin
-        </Button>
+    
+  {
+    load?
+    <Button disabled  className='btn' variant="contained" color="primary">
+    <CircularProgress size={20} sx={{color:"white"}}/>
+  </Button>
+  :
+  <Button  className='btn' type="submit" variant="contained" color="primary">
+  Add Admin
+</Button>
+  }
       </form>
     </Container>
   );
