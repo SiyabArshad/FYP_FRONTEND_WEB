@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ResponsiveBar} from "@nivo/bar";
 
 import students from "../assets/students.png";
@@ -6,15 +6,57 @@ import teacher from "../assets/teacher.png";
 import expense from "../assets/budget.png";
 import SelectField from "./SelectField";
 import {useSelector,useDispatch} from "react-redux"
+import http from "../utils/http"
+
 const Dashboard = () => {
-  let studentsnumber = 1000;
-  let teachernumber = 100;
-  let expensenumber = 50000;
+  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
+  
   const [studentsCount, setStudentsCount] = useState(0);
   const [teacherCount, setTeacherCount] = useState(0);
   const [expenseCount, setExpenseCount] = useState(0);
+  const [studentsnumber,setsudentnumber]=useState(0)
+  const [teachernumber,setteachernumber]=useState(0)
+  const [expensenumber,setexp]=useState(0)
+  const [duration,setduration]=useState(6)
+  const [financial,setfinancial]=useState(0)
+
+  const callduration=(state)=>{
+ setduration(state)
+  }
+
+  const getcount=async()=>{
+    try{
+      const scount=await http.get("/studentcount",{headers:{
+        token:currentUser?.token
+      }})
+      setsudentnumber(scount?.data?.data?.count)
+      setStudentsCount(scount?.data?.data?.count)
+     
+      const tcount=await http.get("/teachercount",{headers:{
+        token:currentUser?.token
+      }})
+
+      setteachernumber(tcount?.data?.data?.count)
+      setTeacherCount(tcount?.data?.data?.count)
+      const lme=await http.get("/lastmonthexpense",{headers:{
+        token:currentUser?.token
+      }})
+      setExpenseCount(lme?.data.data)
+      setexp(lme?.data.data)
+      const fndata=await http.get(`/financial/progress?months${6}`,{headers:{
+        token:currentUser?.token
+      }})
+       console.log(fndata?.data?.data)
+
+    } 
+    catch(e){
+      console.log(e)
+    }
+    }
+
 
   useEffect(() => {
+    getcount()
     setStudentsCount(1); // Reset count to 1 on every refresh
     setTeacherCount(1); // Reset count to 1 on every refresh
     setExpenseCount(1); // Reset count to 1 on every refresh
@@ -196,8 +238,8 @@ const Dashboard = () => {
           })}
         </div>
         <div className="expense_select" >
-          <h2>Expense Analysis</h2>
-          <SelectField />
+          <h2>Finance Analysis</h2>
+          <SelectField duration={callduration}/>
         </div>
         <div className="chart">
           <ResponsiveBar

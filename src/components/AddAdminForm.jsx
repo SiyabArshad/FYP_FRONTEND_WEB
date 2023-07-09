@@ -12,7 +12,7 @@ const AddAdminForm = () => {
   const [password, setPassword] = useState('');
   const [load,setload]=useState(false)
   
-  const handleSubmit = async(e) => {
+  const handleSubmit = async(event) => {
     setload(true)
     event.preventDefault();
     try{

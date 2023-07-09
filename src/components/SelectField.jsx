@@ -8,12 +8,13 @@ import Select from '@mui/material/Select';
 import {useSelector,useDispatch} from "react-redux"
 
 
-export default function SelectField() {
+export default function SelectField({duration}) {
     const [age, setAge] = React.useState(6);
     
     
   const handleChange = (event) => {
     setAge(event.target.value);
+    duration(event.target.value);  
   };
 
   return (
