@@ -120,11 +120,11 @@ const ExpenseForm = () => {
           </Grid>
           {
  !load?
- <Button className='btn' type="submit" variant="contained" color="primary">
+ <Button className='btn' type="submit" variant="contained" color="success">
           Add Expenses
         </Button>
        :
-       <Button disabled={load} className='btn'  variant="contained" color="primary">
+       <Button disabled={load} className='btn'  variant="contained" color="success">
           <CircularProgress size={20} sx={{color:"white"}}/>
         </Button>
 }

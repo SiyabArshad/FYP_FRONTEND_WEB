@@ -24,6 +24,7 @@ import { Provider } from 'react-redux';
 import { useSelector,useDispatch } from 'react-redux';
 import React from "react";
 import ResetPassword from "./pages/ResetPassword";
+import AddNewStudent from "./components/AddNewStudent";
 function App() {
 
   return (
@@ -51,7 +52,7 @@ const AppRoutes=()=>{
         <Route path="/accountmanager" element={<AccountManager />} />
         <Route path="/students" element={<Student />} />
         <Route path="/teachers" element={<Teacher />} />
-        <Route path="/addstudent" element={<AddStudent />} />
+        <Route path="/addstudent" element={<AddNewStudent />} />
         <Route path="/:id/addstudentclass" element={<AddStudentClass />} />
         <Route path="/addteacher" element={<AddTeacher />} />
         <Route path="/addAdmin" element={<AddAdmin />} />

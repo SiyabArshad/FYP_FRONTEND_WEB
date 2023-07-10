@@ -32,7 +32,7 @@ const AddAdminForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" className='adminform'  >
+    <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '16px 32px',height:"70vh",overflowY:"scroll" }}   >
       <Typography sx={{color:"#000000"}} variant="h4" align="center" gutterBottom>
         Add Admin
       </Typography>
@@ -91,11 +91,11 @@ const AddAdminForm = () => {
     
   {
     load?
-    <Button disabled  className='btn' variant="contained" color="primary">
+    <Button disabled  className='btn' variant="contained" color="success">
     <CircularProgress size={20} sx={{color:"white"}}/>
   </Button>
   :
-  <Button  className='btn' type="submit" variant="contained" color="primary">
+  <Button  className='btn' type="submit" variant="contained" color="success">
   Add Admin
 </Button>
   }

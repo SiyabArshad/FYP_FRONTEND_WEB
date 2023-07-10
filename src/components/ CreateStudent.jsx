@@ -5,15 +5,17 @@ import http from "../utils/http"
 import ReactLoading from "react-loading"
 import { uploadImageToFirebaseStorage } from "../utils/uplaodimagetocloud";
 
-const AddTeacherForm = (props) => {
+const CreateStudent = (props) => {
   const [studentData, setStudentData] = useState({
     name: "",
+    fathername:"",
+    rollno: "",
     address:"",
     phone:"",
     email:"",
     password:"",
     profile:"",
-    role:"teacher"
+    role:"student"
       });
       const [load,setlaod]=React.useState(false)
       const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
@@ -46,7 +48,7 @@ const AddTeacherForm = (props) => {
     const downloadedurl = await uploadImageToFirebaseStorage(imageurl);
     studentData.profile=downloadedurl
    }
-      const {data}=await http.post("/createteacher",{...studentData},{headers:{
+      const {data}=await http.post("/createstudent",{...studentData},{headers:{
         token:currentUser?.token
       }})
       alert("Added")
@@ -62,10 +64,10 @@ const AddTeacherForm = (props) => {
   };
 
   return (
-    <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '16px 32px',height:"70vh",overflowY:"scroll" }}>
+    <Container  maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '16px 32px',height:"70vh",overflowY:"scroll" }}>
       <form  onSubmit={handleSubmit}>
       <Typography color={"black"} variant="h4" align="center" gutterBottom>
-        Hire a Teacher
+        Addmission
       </Typography>
         <Grid container spacing={2}>
         <Input
@@ -96,7 +98,7 @@ const AddTeacherForm = (props) => {
           <Grid item xs={12}>
             <TextField
               name="name"
-              label="Teacher Name"
+              label="Student Name"
               value={studentData.name}
               onChange={handleInputChange}
               fullWidth
@@ -104,6 +106,26 @@ const AddTeacherForm = (props) => {
             />
           </Grid>
 
+          <Grid item xs={12}>
+            <TextField
+              name="fathername"
+              label="Father's Name"
+              value={studentData.fathername}
+              onChange={handleInputChange}
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="rollno"
+              label="Roll No"
+              value={studentData.rollno}
+              onChange={handleInputChange}
+              fullWidth
+              required
+            />
+          </Grid>
           <Grid item xs={12}>
             <TextField
               name="phone"
@@ -163,4 +185,4 @@ const AddTeacherForm = (props) => {
   );
 };
 
-export default AddTeacherForm;
+export default CreateStudent;
