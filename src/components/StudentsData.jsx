@@ -49,7 +49,7 @@ const StudentData = () => {
   const [records, setrecords] = useState([]);
   // const [page,setpage]=useState(1)
   // const [limit,setlimit]=useState(2)
-  const getdata = async (page = 1, limit = 2) => {
+  const getdata = async (page = 1, limit = 5) => {
     setload(true);
     try {
       const { data } = await http.get(`/students?page=${page}&limit=${limit}`, {
@@ -182,13 +182,13 @@ const StudentData = () => {
         >
           <CustomIconButton
             disabled={records?.page === 1||records?.total===0}
-            onClick={() => getdata(records?.page - 1, 2)}
+            onClick={() => getdata(records?.page - 1, 5)}
           >
             <ArrowLeft fontSize="large" />
           </CustomIconButton>
           <CustomIconButton
             disabled={records?.page === records?.pages||records?.total===0}
-            onClick={() => getdata(records?.page + 1, 2)}
+            onClick={() => getdata(records?.page + 1, 5)}
           >
             <ArrowRight fontSize="large" />
           </CustomIconButton>

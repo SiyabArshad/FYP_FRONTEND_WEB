@@ -46,7 +46,7 @@ const TeacherData = () => {
   const [search, setsearch] = useState("");
   const [load, setload] = useState(false);
   const [records, setrecords] = useState([]);
-  const getdata = async (page = 1, limit = 2) => {
+  const getdata = async (page = 1, limit = 3) => {
     setload(true);
     try {
       const { data } = await http.get(`/teachers?page=${page}&limit=${limit}`, {
@@ -181,13 +181,13 @@ const TeacherData = () => {
         >
           <CustomIconButton
             disabled={records?.page === 1||records?.total===0}
-            onClick={() => getdata(records?.page - 1, 2)}
+            onClick={() => getdata(records?.page - 1, 3)}
           >
             <ArrowLeft fontSize="large" />
           </CustomIconButton>
           <CustomIconButton
             disabled={records?.page === records?.pages||records?.total===0}
-            onClick={() => getdata(records?.page + 1, 2)}
+            onClick={() => getdata(records?.page + 1, 3)}
           >
             <ArrowRight fontSize="large" />
           </CustomIconButton>
