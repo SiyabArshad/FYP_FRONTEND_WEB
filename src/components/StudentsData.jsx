@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, { useState, useMemo } from "react";
 import {
   TextField,
   Container,
@@ -10,421 +10,188 @@ import {
   Avatar,
   Button,
   Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TablePagination,
+  TableRow,
+  styled,
 } from "@mui/material";
-import {Search as SearchIcon} from "@mui/icons-material";
-import ClassSectionSelect from "./ClassSectionSelect";
-import {useSelector,useDispatch} from "react-redux"
+import {
+  Search as SearchIcon,
+  DeleteOutline,
+  Edit,
+  Expand,
+  Password,
+  Download,
+  DeleteOutlineRounded,
+  DeleteRounded,
+  ArrowRight,
+  ArrowLeft,
+} from "@mui/icons-material";
+import "./componentscss/table.css";
+import Loading from "./Loading";
+import http from "../utils/http";
+import { useSelector, useDispatch } from "react-redux";
+
+import { AccountCircle } from "@mui/icons-material";
+const CustomIconButton = styled(IconButton)(({ theme }) => ({
+  "&:focus": {
+    outline: "none",
+  },
+}));
 const StudentData = () => {
-  const [searchText, setSearchText] = useState("");
-  const [studentData, setStudentData] = useState([
-    {
-      id: 1,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "John Doe",
-      rollno: "A001",
-      class: "10th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 2,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Jane Smith",
-      rollno: "A002",
-      class: "10th",
-      section: "B",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 3,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 4,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 5,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 6,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 7,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 8,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-    {
-      id: 9,
-      profilePicture: null,
-      admno: 353,
-      dob: "12/02/1995",
-      name: "Alice Johnson",
-      rollno: "A003",
-      class: "11th",
-      section: "A",
-      address: "H#233-C/7 moh shehzad colony near carriage factory rwp",
-      fathername: "XYZ",
-      phoneno: "1234345467546",
-    },
-  ]);
-  const [updatedData, setUpdatedData] = useState(studentData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
+  const [search, setsearch] = useState("");
+  const [load, setload] = useState(false);
+  const [records, setrecords] = useState([]);
+  // const [page,setpage]=useState(1)
+  // const [limit,setlimit]=useState(2)
+  const getdata = async (page = 1, limit = 2) => {
+    setload(true);
+    try {
+      const { data } = await http.get(`/students?page=${page}&limit=${limit}`, {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setrecords(data?.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setload(false);
+    }
   };
+  React.useEffect(() => {
+    getdata();
+  }, []);
+  //delete student function
+  const deletestudent = async (id) => {
+    const per = confirm("Are you Sure You want to Delete");
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+    if (per) {
+      setload(true);
+      try {
+        await http.delete(`/deletestudent?id=${id}`, {
+          headers: {
+            token: currentUser?.token,
+          },
+        });
+        getdata();
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setload(false);
+      }
+    }
   };
+  //end delete
 
-  const handleInputChange = (event) => {
-    const {name, value} = event.target;
-    setUpdatedData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  //search function
+  const handlesearch = async (event) => {
+    const { value } = event.target;
+    setsearch(value);
+    try {
+      const { data } = await http.get(`/students?searchText=${value}`, {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      console.log(data?.data);
+      setrecords(data?.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
-
-  const handleUpdate = () => {
-    
-    handleCloseModal();
-  };
-
-  // Function to handle search text change
-  const handleSearchTextChange = (event) => {
-    setSearchText(event.target.value);
-  };
-
-  // Function to handle search submission
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    // Perform search logic based on searchText and update studentData state
-    // Replace the below dummy implementation with your actual search logic
-    const filteredStudents = studentData.filter((student) =>
-      student.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setStudentData(filteredStudents);
-  };
-
+  //end search function
   return (
-    <Container className="ST-container">
-      <form onSubmit={handleSearchSubmit}>
-        <Grid style={{width: "100%"}} container spacing={2} alignItems="center">
-          <Grid style={{width: "100%"}} item>
-            <TextField
-              label="Student Name"
-              variant="filled"
-              value={searchText}
-              onChange={handleSearchTextChange}
-              sx={{background: "#ffffff", borderRadius: "10px"}}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <IconButton onClick={handleSearchSubmit}>
-                    <SearchIcon />
-                  </IconButton>
-                ),
-              }}
-            />
-          </Grid>
-        </Grid>
-      </form>
-      <ClassSectionSelect />
-      <div className="ST-data">
-        {studentData.map((student) => {
-          return (
-            <>
-              <Paper className="ST-details" key={student.id} elevation={3}>
-                <Box p={3}>
-                  <Grid container spacing={2}>
-                    <Grid
-                      sx={{marginLeft: "85px", alignItems: "center"}}
-                      item
-                      xs={20}>
-                      <Avatar
-                        src={studentData.profilePicture}
-                        sx={{height: "80px", width: "80px"}}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Name:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.name}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>ADM No:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.admno}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Roll No:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.rollno}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Class:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.class}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Section:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.section}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Father Name:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        {student.fathername}
-                      </Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Phone #:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.phoneno}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>Address:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.address}</Typography>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                      <Typography variant="body1">
-                        <strong>DOB:</strong>
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body1">{student.dob}</Typography>
-                    </Grid>
-                    <Grid>
-                      <Button
-                        onClick={handleOpenModal}
-                        sx={{
-                          marginLeft: "6rem",
-                          marginTop: "1rem",
-                          background: "#285E4F",
-                        }}
-                        type="submit"
-                        variant="contained"
-                        color="primary">
-                        Update
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Paper>
-              <Modal
-                className="model"
-                open={isModalOpen}
-                onClose={handleCloseModal}>
-                <Container
-                  maxWidth="sm"
-                  style={{
-                    marginTop: "2rem",
-                    backgroundColor: "#ffffff",
-                    borderRadius: "8px",
-                    padding: "16px",
-                  }}>
-                  <Typography variant="h4" align="center" gutterBottom>
-                    Update Student Details
-                  </Typography>
-                  <TextField
-                    label="Address"
-                    fullWidth
-                    name="address"
-                    value={updatedData.address}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Email"
-                    fullWidth
-                    name="email"
-                    value={updatedData.email}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Roll No"
-                    fullWidth
-                    name="rollno"
-                    value={updatedData.rollno}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Class"
-                    fullWidth
-                    name="class"
-                    value={updatedData.class}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Section"
-                    fullWidth
-                    name="section"
-                    value={updatedData.section}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="Phone No"
-                    fullWidth
-                    name="phoneno"
-                    value={updatedData.phoneno}
-                    onChange={handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />
-
-                  <Grid
-                    style={{
-                      justifyContent: "flex-end",
-                      display: "flex",
-                      gap: ".7rem",
-                      marginTop: ".5rem",
-                    }}>
-                    <Button
-                      style={{background: "#285E4F"}}
-                      variant="contained"
-                      color="primary"
-                      onClick={handleUpdate}>
-                      Update
-                    </Button>
-                    <Button
-                      style={{background: "#285E4F"}}
-                      variant="contained"
-                      onClick={handleCloseModal}>
-                      Cancel
-                    </Button>
-                  </Grid>
-                </Container>
-              </Modal>
-            </>
-          );
-        })}
-
-        <div className="btns">
-          <Button
-            variant="contained"
-            color="primary"
-            disableElevation
-            sx={{background: "green", marginRight: "10px"}}>
-            Previous
-          </Button>
-          <Button
-            sx={{background: "green"}}
-            variant="contained"
-            color="primary"
-            disableElevation>
-            Next
-          </Button>
+    <Container
+      style={{
+        width: "95%",
+        borderRadius: "16px",
+        backgroundColor: "white",
+        padding: "16px",
+        height: "80vh",
+        overflowY: "scroll",
+      }}
+    >
+      <Loading visible={load} />
+      <div className="searchbox">
+        <TextField
+          name="search"
+          label="Search"
+          onChange={(e) => handlesearch(e)}
+          value={search}
+          color="success"
+          sx={{}}
+          size="md"
+        />
+      </div>
+      <table className="customers">
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Roll No</th>
+          <th>Address</th>
+          <th>Profile</th>
+          <th>Delete</th>
+        </tr>
+        {records?.students?.map((item, i) => (
+          <tr key={i}>
+            <td>{item?.name}</td>
+            <td>{item?.phone}</td>
+            <td>{item?.rollno}</td>
+            <td>{item?.address}</td>
+            <td>
+              <Avatar sx={{ width: 50, height: 40 }}>
+                {
+                  item?.profilePic?<img
+                  src={item?.profilePic}
+                  alt="Avatar"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                :
+                <AccountCircle sx={{width: "100%", height: "100%"}} />
+                }
+              </Avatar>
+            </td>
+            <td>
+              <CustomIconButton
+                onClick={() => deletestudent(item?.id)}
+                color="warning"
+              >
+                <DeleteRounded color="warning" />
+              </CustomIconButton>
+            </td>
+          </tr>
+        ))}
+      </table>
+      <div className="searchboxw">
+        <Typography color={"black"}>
+          Total Records {records?.total} Current Page {records?.page} Total
+          Pages {records?.pages}
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <CustomIconButton
+            disabled={records?.page === 1||records?.total===0}
+            onClick={() => getdata(records?.page - 1, 2)}
+          >
+            <ArrowLeft fontSize="large" />
+          </CustomIconButton>
+          <CustomIconButton
+            disabled={records?.page === records?.pages||records?.total===0}
+            onClick={() => getdata(records?.page + 1, 2)}
+          >
+            <ArrowRight fontSize="large" />
+          </CustomIconButton>
         </div>
       </div>
     </Container>

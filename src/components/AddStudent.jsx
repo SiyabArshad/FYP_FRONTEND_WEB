@@ -17,8 +17,7 @@ const AddStudent = () => {
     {name: "User", url: "/user"},
   ]:
   [
-    {name: "Students", url: "/students"},
-    {name: "Teachers", url: "/teachers"},
+    {name: "Dashboard", url: "/accountmanager"},
     {name: "User", url: "/user"},
   ]
   ;

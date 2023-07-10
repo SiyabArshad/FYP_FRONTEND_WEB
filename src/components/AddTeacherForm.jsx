@@ -69,7 +69,6 @@ const AddTeacherForm = (props) => {
       </Typography>
         <Grid container spacing={2}>
         <Input
-        required
           type="file"
           onChange={handlePictureChange}
           inputProps={{

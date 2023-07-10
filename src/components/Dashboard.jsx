@@ -9,7 +9,7 @@ import {useSelector,useDispatch} from "react-redux"
 import http from "../utils/http"
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-
+import Loading from "./Loading";
 const Dashboard = () => {
   const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
   
@@ -21,16 +21,17 @@ const Dashboard = () => {
   const [expensenumber,setexp]=useState(0)
   const [duration,setduration]=useState(6)
   const [financial,setfinancial]=useState([])
-
+  const [load,setload]=useState(false)
   const callduration=async(state)=>{
  setduration(state)
- const fndata=await http.get(`/financial/progress?months${state}`,{headers:{
+ const fndata=await http.get(`/financial/progress?months=${state}`,{headers:{
   token:currentUser?.token
 }})
  setfinancial(fndata?.data?.data)
   }
 
   const getcount=async()=>{
+    setload(true)
     try{
       const scount=await http.get("/studentcount",{headers:{
         token:currentUser?.token
@@ -49,7 +50,7 @@ const Dashboard = () => {
       }})
       setExpenseCount(lme?.data.data)
       setexp(lme?.data.data)
-      const fndata=await http.get(`/financial/progress?months${duration}`,{headers:{
+      const fndata=await http.get(`/financial/progress?months=6`,{headers:{
         token:currentUser?.token
       }})
        setfinancial(fndata?.data?.data)
@@ -57,6 +58,9 @@ const Dashboard = () => {
     } 
     catch(e){
       console.log(e)
+    }
+    finally{
+      setload(false)
     }
     }
 
@@ -107,6 +111,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="dashboard">
+        <Loading visible={load}/>
         <div className="tabs">
           {tabs.map((tabdata, index) => {
             return (
@@ -121,7 +126,7 @@ const Dashboard = () => {
           })}
         </div>
         <div className="expense_select" >
-          <h2>Finance Analysis</h2>
+          <h2>Financial Analysis</h2>
           <SelectField duration={callduration}/>
         </div>
         <div className="chart">

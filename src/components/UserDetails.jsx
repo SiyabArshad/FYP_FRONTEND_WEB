@@ -20,7 +20,7 @@ import {Visibility, VisibilityOff} from "@mui/icons-material";
 import http from "../utils/http"
 import ReactLoading from "react-loading"
 import { uploadImageToFirebaseStorage } from "../utils/uplaodimagetocloud";
-
+import Loading from "./Loading";
 const UserDetails = () => {
   const [load,setlaod]=React.useState(false)
   const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
@@ -136,6 +136,7 @@ const UserDetails = () => {
   console.log(profile)
   return (
     <Container className="admindata" maxWidth="sm">
+      <Loading visible={load}/>
       <Box py={4}>
         <Paper
           elevation={3}
@@ -194,7 +195,6 @@ const UserDetails = () => {
           </Typography>
           <form>
             <Input
-              required
               type="file"
               onChange={handlePictureChange}
               inputProps={{
