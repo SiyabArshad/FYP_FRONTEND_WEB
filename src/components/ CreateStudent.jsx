@@ -51,7 +51,7 @@ const CreateStudent = (props) => {
       const {data}=await http.post("/createstudent",{...studentData},{headers:{
         token:currentUser?.token
       }})
-      alert("Added")
+      alert(data?.message)
     }
     catch(e)
     {

@@ -54,14 +54,14 @@ const AppRoutes=()=>{
         <Route path="/students" element={<Student />} />
         <Route path="/teachers" element={<Teacher />} />
         <Route path="/addstudent" element={<AddNewStudent />} />
-        <Route path="/:id/addstudentclass" element={<AddStudentClass />} />
+        <Route path="/enrollment/:classname/:id" element={<AddStudentClass />} />
         <Route path="/addteacher" element={<AddTeacher />} />
         <Route path="/addAdmin" element={<AddAdmin />} />
         <Route path="/expense" element={<Expense />} />
         <Route path="/user" element={<User />} />
         <Route path="/classes" element={<Classes />} />
-{/* updating below routes */}
-        <Route path="/classes/:id" element={<Sections />} />
+        <Route path="/classes/:classname/:id" element={<Sections />} />
+        {/* updating below routes */}
         <Route path="/classes/:id/:id" element={<Subjects />} />
         <Route path="/classess/:id/:id" element={<MainClass/>} />
         <Route path="/:id/assignments" element={<Assignments/>} />

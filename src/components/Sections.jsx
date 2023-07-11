@@ -4,12 +4,15 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import Section from "./Section";
 import {useSelector,useDispatch} from "react-redux"
-
+import StudentData from "./StudentsData";
+import EnrollmentListData from "./EnrollmentListData";
 const Sections = () => {
   const param = useParams();
   const VerticalNavData = [
-    {name: param.id, url: `/classes/${param.id}`},
-    {name: "Add Student", url: `/${param.id}/addstudentclass`},
+    {name: param.classname, url: `/classes/${param.classname}/${param.id}`},
+    {name: "Attendance", url: `/${param.id}/addstudentclass`},
+    {name: "Grades", url: `/${param.id}/addstudentclass`},
+    {name: "Enroll Student", url: `/enrollment/${param.classname}/${param.id}`},
   ];
   
   return (
@@ -17,7 +20,7 @@ const Sections = () => {
     <div className="homesection">
       <Header Navbar={<Navbar active={0} />} />
       <div className="homearea">
-        <Data data={<Section />} VerticalNavData={VerticalNavData} active={0} />
+        <Data data={<EnrollmentListData />} VerticalNavData={VerticalNavData} active={0} />
       </div>
     </div>
       

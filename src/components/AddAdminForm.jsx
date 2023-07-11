@@ -16,10 +16,10 @@ const AddAdminForm = () => {
     setload(true)
     event.preventDefault();
     try{
-      await http.post("/createuser",{name,email,phone,address,password,role:"admin",admin:true},{headers:{
+      const{data}=await http.post("/createuser",{name,email,phone,address,password,role:"admin",admin:true},{headers:{
         token:currentUser?.token
       }})
-      alert("Added")
+      alert(data?.message)
     } 
     catch(e){
       console.log(e)

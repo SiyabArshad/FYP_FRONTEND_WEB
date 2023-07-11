@@ -30,13 +30,13 @@ const [section,setsection]=useState("")
 const createaClass=async()=>{
     setlaod(true)
     try{
-        await http.post("/createclass",{classname,section},{
+      const{data}=  await http.post("/createclass",{classname,section},{
             headers:{
                 token:currentUser?.token
             }
         })
         refreshrec()
-            alert("Created")
+            alert(data?.message)
     }
     catch(e){
         console.log(e)

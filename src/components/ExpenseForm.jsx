@@ -17,10 +17,10 @@ const ExpenseForm = () => {
     setload(true)
     event.preventDefault();
     try{
-      await http.post("/createtransaction",{bill_paid,date,salaries_paid,stationary_earning,stationary_spending,others,fee_received},{headers:{
+      const {data}=await http.post("/createtransaction",{bill_paid,date,salaries_paid,stationary_earning,stationary_spending,others,fee_received},{headers:{
         token:currentUser?.token
       }})
-      alert("Added")
+      alert(data?.message)
     } 
     catch(e){
       console.log(e)

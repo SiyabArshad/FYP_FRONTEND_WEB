@@ -4,19 +4,21 @@ import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import {useSelector,useDispatch} from "react-redux"
+import EnrollmentForm from "./EnrollmentForm";
 const AddStudentClass = () => {
-    const param = useParams();
-    const VerticalNavData = [
-      {name: param.id, url: `/classes/${param.id}`},
-      {name: "Add Student", url: `/${param.id}/addstudentclass`},
-    ];
-  
+  const param = useParams();
+  const VerticalNavData = [
+    {name: param.classname, url: `/classes/${param.classname}/${param.id}`},
+    {name: "Attendance", url: `/${param.id}/addstudentclass`},
+    {name: "Grades", url: `/${param.id}/addstudentclass`},
+    {name: "Enroll Student", url: `/enrollment/${param.classname}/${param.id}`},
+  ];
   return (
     <>
       <div className="homesection">
         <Header Navbar={<Navbar active={0} />} />
         <div className="homearea">
-        <Data VerticalNavData={VerticalNavData} active={0} data={<AddStudentForm class={param.id} />} />
+        <Data VerticalNavData={VerticalNavData} active={0} data={<EnrollmentForm  />} />
       </div>
       </div>
     </>

@@ -99,12 +99,14 @@ const handleOpenModal = () => {
        : <Container style={{display:"flex",flexDirection:"row",alignItems:"center",flexWrap:"wrap",height:"100%",overflowY:"scroll",cursor:"pointer"}}>
        {
          records?.map((item,i)=>(
-           <Card key={i} style={{width:"19%",minHeight:"150px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:'column',margin:"1rem 1rem"}}>
+          <Link   style={{width:"19%",minHeight:"150px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:'column',margin:"1rem 1rem"}} key={i} to={`/classes/${item?.classname}/${item?.id}`} >
+           <Card >
            <CardContent>
            <Typography sx={{fontWeight:"bold",fontSize:"1.2rem",textAlign:"center"}}>{item?.classname}</Typography>
            <Typography  sx={{textAlign:"center"}}>{item?.section}</Typography>
            </CardContent>
           </Card>
+          </Link>
          ))
        }
 
@@ -113,16 +115,7 @@ const handleOpenModal = () => {
         </Container>
         <CreateNewClass refreshrec={getrecords} closefunc={handleCloseModal} visible={isModalOpen}/>
       </Container>
-    {/* <div className="cs-sect" >    
-    {
-      classes.map((data,index)=>{
-        return <Link to={"/classes/"+data.id} key={index} className="classsection" >
-      <p>{data.name}</p>
-    </Link>
-      })
-    }
-    </div> */}
-   
+  
     </>
 
   )
