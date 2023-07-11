@@ -99,8 +99,8 @@ const handleOpenModal = () => {
        : <Container style={{display:"flex",flexDirection:"row",alignItems:"center",flexWrap:"wrap",height:"100%",overflowY:"scroll",cursor:"pointer"}}>
        {
          records?.map((item,i)=>(
-          <Link   style={{width:"19%",minHeight:"150px",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:'column',margin:"1rem 1rem"}} key={i} to={`/classes/${item?.classname}/${item?.id}`} >
-           <Card >
+          <Link   style={{width:"19%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:'column',margin:"1rem 1rem"}} key={i} to={`/classes/${item?.classname}/${item?.id}`} >
+           <Card  style={{minHeight:"120px"}}>
            <CardContent>
            <Typography sx={{fontWeight:"bold",fontSize:"1.2rem",textAlign:"center"}}>{item?.classname}</Typography>
            <Typography  sx={{textAlign:"center"}}>{item?.section}</Typography>

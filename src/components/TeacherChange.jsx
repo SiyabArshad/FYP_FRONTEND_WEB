@@ -1,9 +1,10 @@
-import CreateStudent from "./ CreateStudent";
+import AddStudentForm from "./AddStudentForm";
 import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import {useSelector,useDispatch} from "react-redux"
-const AddNewStudent = () => {
+import TeacherChangetForm from "./TeacherChangeForm";
+const TeacherChange = () => {
   
   const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
   const VerticalNavData = currentUser?.admin?[
@@ -27,11 +28,11 @@ const AddNewStudent = () => {
       <div className="homesection">
         <Header Navbar={<Navbar active={1} />} />
         <div className="homearea">
-        <Data VerticalNavData={VerticalNavData}  data={<CreateStudent />} />
+        <Data VerticalNavData={VerticalNavData}  data={<TeacherChangetForm />} />
       </div>
       </div>
     </>
   );
 };
 
-export default AddNewStudent;
+export default TeacherChange;

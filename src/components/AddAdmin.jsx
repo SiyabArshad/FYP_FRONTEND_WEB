@@ -12,6 +12,7 @@ const AddAdmin = () => {
     {name: "Add Student", url: "/addStudent"},
     {name: "Add Teacher", url: "/addTeacher"},
     {name: "Add Admin", url: "/addAdmin"},
+    {name: "Update Class", url: "/updateclass"},
     {name: "Add Expense", url: "/expense"},
     {name: "User", url: "/user"},
   ]:
