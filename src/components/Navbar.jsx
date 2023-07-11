@@ -5,7 +5,6 @@ const Navbar = ({active}) => {
 
 const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
   const MainNav = currentUser?.admin?[
-    {name: "classes", url: `/classes`},
     {name: "Account", url: "/accountmanager"}
   ]:[  
   {name: "classes", url: `/classes`},

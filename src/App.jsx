@@ -60,6 +60,7 @@ const AppRoutes=()=>{
         <Route path="/expense" element={<Expense />} />
         <Route path="/user" element={<User />} />
         <Route path="/classes" element={<Classes />} />
+{/* updating below routes */}
         <Route path="/classes/:id" element={<Sections />} />
         <Route path="/classes/:id/:id" element={<Subjects />} />
         <Route path="/classess/:id/:id" element={<MainClass/>} />
@@ -67,6 +68,7 @@ const AppRoutes=()=>{
         <Route path="/:id/attendence" element={<Attendence/>} />
         <Route path="/:id/grades" element={<Grades/>} />
         <Route path="/:id/addgrades" element={<AddGrades/>} />
+       
         </>
         }
         <Route path="*" element={<NotFound/>}/>
