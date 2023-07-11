@@ -19,7 +19,8 @@ import React from "react";
 import ResetPassword from "./pages/ResetPassword";
 import AddNewStudent from "./components/AddNewStudent";
 import TeacherChange from "./components/TeacherChange";
-
+import Attendence from "./components/Attendence";
+import Grades from "./components/Grades";
 function App() {
 
   return (
@@ -57,7 +58,8 @@ const AppRoutes=()=>{
        
         <Route path="/classes" element={<Classes />} />
         <Route path="/classes/:classname/:id" element={<Sections />} />
-          
+        <Route path="/attendance/:classname/:id" element={<Attendence />} />
+        <Route path="/grades/:classname/:id" element={<Grades />} />
         </>
         }
         <Route path="*" element={<NotFound/>}/>

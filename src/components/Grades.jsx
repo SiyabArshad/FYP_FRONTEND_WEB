@@ -8,11 +8,11 @@ import {useSelector,useDispatch} from "react-redux"
 const Grades = () => {
     const param = useParams();
     const VerticalNavData = [
-      {name: param.id, url: "/classes"},
-      {name: "Grades", url: `/${param.id}/grades`},
-      {name: "Add Grades", url: `/${param.id}/addgrades`},
+      {name: param.classname, url: `/classes/${param.classname}/${param.id}`},
+      {name: "Attendance", url: `/attendance/${param.classname}/${param.id}`},
+      {name: "Grades", url: `/grades/${param.classname}/${param.id}`},
+      {name: "Enroll Student", url: `/enrollment/${param.classname}/${param.id}`},
     ];
-  
   return (
     <>
     <div className="homesection">

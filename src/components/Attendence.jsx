@@ -7,13 +7,12 @@ import AttendanceTable from "./AttendTable";
 import {useSelector,useDispatch} from "react-redux"
 const Attendence = () => {
     const param = useParams();
-  const VerticalNavData = [
-    {name: param.id},
-    {name: "Assignments", url: `/${param.id}/assignments`},
-    {name: "Attendence", url: `/${param.id}/attendence`},
-    
-  ];
-  
+    const VerticalNavData = [
+      {name: param.classname, url: `/classes/${param.classname}/${param.id}`},
+      {name: "Attendance", url: `/attendance/${param.classname}/${param.id}`},
+      {name: "Grades", url: `/grades/${param.classname}/${param.id}`},
+      {name: "Enroll Student", url: `/enrollment/${param.classname}/${param.id}`},
+    ];
   return (
     <>
     <div className="homesection">

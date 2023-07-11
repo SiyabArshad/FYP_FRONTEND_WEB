@@ -10,11 +10,11 @@ const Sections = () => {
   const param = useParams();
   const VerticalNavData = [
     {name: param.classname, url: `/classes/${param.classname}/${param.id}`},
-    {name: "Attendance", url: `/${param.id}/addstudentclass`},
-    {name: "Grades", url: `/${param.id}/addstudentclass`},
+    {name: "Attendance", url: `/attendance/${param.classname}/${param.id}`},
+    {name: "Grades", url: `/grades/${param.classname}/${param.id}`},
     {name: "Enroll Student", url: `/enrollment/${param.classname}/${param.id}`},
   ];
-  
+         
   return (
     <>
     <div className="homesection">

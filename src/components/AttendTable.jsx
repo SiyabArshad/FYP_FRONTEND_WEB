@@ -1,93 +1,169 @@
-import { useState } from 'react';
 import DatePickers from './DatePicker';
-import {useSelector,useDispatch} from "react-redux"
-const AttendanceTable = () => {
-  const [attendance, setAttendance] = useState([{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-   
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-    
-  },{
-    rollNo:"19-CS-11",
-    name:"Ali Zahid",
-}]);
+import React, { useState, useMemo } from "react";
+import {
+  TextField,
+  Container,
+  Grid,
+  Typography,
+  IconButton,
+  Box,
+  Paper,
+  Avatar,
+  Button,
+  Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TablePagination,
+  TableRow,
+  styled,
+  Select,
+  FormControl,
+  InputLabel,MenuItem
+} from "@mui/material";
+import {
+  Search as SearchIcon,
+  DeleteOutline,
+  Edit,
+  Expand,
+  Password,
+  Download,
+  DeleteOutlineRounded,
+  DeleteRounded,
+  ArrowRight,
+  ArrowLeft,
+  Save
+} from "@mui/icons-material";
+import "./componentscss/table.css";
+import Loading from "./Loading";
+import http from "../utils/http";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { AccountCircle } from "@mui/icons-material";
+import CustomSelectOptions from './CustomSelectOptions';
+import CustomAttendanceStatus from './CustomAttendanceStatus';
 
-  const handleAttendanceChange = (index, value) => {
-    const updatedAttendance = [...attendance];
-    updatedAttendance[index].status = value;
-    setAttendance(updatedAttendance);
+const CustomIconButton = styled(IconButton)(({ theme }) => ({
+  "&:focus": {
+    outline: "none",
+  },
+}));
+const AttendTable = () => {
+    const param=useParams()
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
+  const [search, setsearch] = useState("");
+  const [load, setload] = useState(false);
+  const [records, setrecords] = useState([]);
+  const [status,setstatus]=useState("present")
+  const [date,setdate]=React.useState(new Date(Date.now()).getUTCFullYear()+"-"+(new Date(Date.now()).getMonth()+1)+"-"+new Date(Date.now()).getDate())
+  const getdata = async () => {
+    setload(true);
+    try {
+      const { data } = await http.get(`/enrollment?classId=${param.id}`, {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setrecords(data?.data);
+      console.log(data?.data)
+      
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setload(false);
+    }
   };
-
-  const handleSaveAttendance = () => {
-    // You can perform additional logic here to save the attendance data
-    console.log(attendance);
-  };
-
-  const renderAttendanceTable = () => {
-    return attendance.map((student, index) => (
-      <tr key={index}>
-        <td>{student.rollNo}</td>
-        <td>{student.name}</td>
-        <td>
-          <select
-            value={student.status}
-            onChange={(e) => handleAttendanceChange(index, e.target.value)}
-          >
-            <option value="P">Present</option>
-            <option value="A">Absent</option>
-          </select>
-        </td>
-      </tr>
-    ));
-  };
+  React.useEffect(() => {
+    getdata();
+  }, []);
+  const markattendance=async(id)=>{
+    setload(true)
+    try{
+      const {data}=http.post("/createattendance",{date,status,enrollmentId:id}, {
+        headers: {
+          token: currentUser?.token,
+        },
+      })
+      alert("Attendance Added")
+    }
+    catch(e){ 
+      alert("Failed")
+    }
+    finally{
+      setload(false)
+    }
+  }
+  const changestatus=(stat)=>{
+    setstatus(stat)
+  }
+ console.log(date)
 
   return (
-    <div style={{height:"500px"}}>
-      <h2 style={{textAlign:"center"}}>Attendance</h2>
-      <div style={{background:"white",width:"200px",marginLeft:"35rem",borderRadius:".2rem",marginTop:".25rem",marginBottom:".25rem"}}>
-      <DatePickers/>
+    <Container
+      style={{
+        width: "95%",
+        borderRadius: "16px",
+        backgroundColor: "white",
+        padding: "16px",
+        height: "80vh",
+        overflowY: "scroll",
+      }}
+    >
+      <Loading visible={load} />
+      <div className="searchbox">
+      <input
+              style={{
+                width: "20%",
+                height: "50px",
+                borderRadius: ".3rem",
+                borderWidth: "1px",
+              }}
+              type="date"
+              value={date}
+              onChange={(e)=>setdate(e.target.value)}
+              required
+            />
       </div>
-      <table style={{width:"800px",textAlign:"center"}}>
-        <thead>
-          <tr>
-            <th>ROLL NO</th>
-            <th>NAME</th>
-            <th>ATTENDENCE</th>
+      <table className="customers">
+        <tr>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Class</th>
+          <th>Status</th>
+          <th>Action</th>
+          <th>Save</th>
+        </tr>
+        {records?.map((item, i) => (
+          <tr key={i}>
+            <td>{item?.student.name}</td>
+            <td>{item?.student.rollno}</td>
+            <td>
+                {
+                    item?.class.classname
+                }
+            </td>
+            {/* here status */}
+            {/* <td>Present</td> */}
+<CustomAttendanceStatus date={date} id={item?.id} token={currentUser?.token}/>
+            {/* end status */}
+            <td>
+            <CustomSelectOptions changestatus={changestatus}/>
+            </td>
+            <td>
+              <CustomIconButton
+              onClick={()=>markattendance(item?.id)}
+                color="success"
+              >
+                <Save color="success" />
+              </CustomIconButton>
+            </td>
           </tr>
-        </thead>
-        <tbody>{renderAttendanceTable()}</tbody>
+        ))}
       </table>
-      <button style={{position:"relative",right:"-40rem",bottom:"-1rem"}} onClick={handleSaveAttendance}>Save Attendance</button>
-
-    </div>
+    </Container>
   );
 };
 
-export default AttendanceTable;
+export default AttendTable;
