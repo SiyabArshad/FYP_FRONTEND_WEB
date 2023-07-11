@@ -1,6 +1,13 @@
-import {useState} from "react";
-import {TextField, Button, Container, Grid,Input, Typography} from "@mui/material";
-import {useSelector,useDispatch} from "react-redux"
+import { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Grid,
+  Input,
+  Typography,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 const AddStudentForm = (props) => {
   const [studentData, setStudentData] = useState({
     studentName: "",
@@ -8,8 +15,8 @@ const AddStudentForm = (props) => {
     className: props.class,
     section: "",
     fatherName: "",
-    address:"",
-    admNo:"",
+    address: "",
+    admNo: "",
     dob: null,
     profilePicture: null,
   });
@@ -30,7 +37,7 @@ const AddStudentForm = (props) => {
   };
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setStudentData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -56,36 +63,49 @@ const AddStudentForm = (props) => {
       section: "",
       fatherName: "",
       dob: "",
-      profilePicture:null
+      profilePicture: null,
     });
   };
 
   return (
     <Container className="container">
-      <form  onSubmit={handleSubmit}>
-      <Typography color={"black"} variant="h4" align="center" gutterBottom>
-        Add Student
-      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Typography color={"black"} variant="h4" align="center" gutterBottom>
+          Add Student
+        </Typography>
         <Grid container spacing={2}>
-        <Input
-        required
-          type="file"
-          onChange={handlePictureChange}
-          inputProps={{
-            accept: 'image/*',
-            id: 'profile-picture',
-          }}
-          style={{ display: 'none' }}
-        />
-        <div style={{width:"35rem",marginLeft:"1rem",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-
-        {studentData.profilePicture!==null ? <Typography sx={{maxWidth:"60%",color:"#000000"}}>{studentData.profilePicture.name}</Typography>:<Typography sx={{color:"#6B6B6B"}}>No Image Insert</Typography>}
-        <label htmlFor="profile-picture">
-          <Button component="span"  color="primary">
-            Upload Picture
-          </Button>
-        </label>
-        </div>
+          <Input
+            required
+            type="file"
+            onChange={handlePictureChange}
+            inputProps={{
+              accept: "image/*",
+              id: "profile-picture",
+            }}
+            style={{ display: "none" }}
+          />
+          <div
+            style={{
+              width: "35rem",
+              marginLeft: "1rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            {studentData.profilePicture !== null ? (
+              <Typography sx={{ maxWidth: "60%", color: "#000000" }}>
+                {studentData.profilePicture.name}
+              </Typography>
+            ) : (
+              <Typography sx={{ color: "#6B6B6B" }}>No Image Insert</Typography>
+            )}
+            <label htmlFor="profile-picture">
+              <Button component="span" color="primary">
+                Upload Picture
+              </Button>
+            </label>
+          </div>
           <Grid item xs={12}>
             <TextField
               name="studentName"

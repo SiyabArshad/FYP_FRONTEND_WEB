@@ -3,26 +3,30 @@ import Data from "./Data";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import AddGradesData from "./AddGradesData";
-import {useSelector,useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 
 const AddGrades = () => {
-    const param = useParams();
-    const VerticalNavData = [
-      {name: param.id, url: "/classes"},
-      {name: "Grades", url: `/${param.id}/grades`},
-      {name: "Add Grades", url: `/${param.id}/addgrades`},
-    ];
-  
+  const param = useParams();
+  const VerticalNavData = [
+    { name: param.id, url: "/classes" },
+    { name: "Grades", url: `/${param.id}/grades` },
+    { name: "Add Grades", url: `/${param.id}/addgrades` },
+  ];
+
   return (
     <>
-    <div className="homesection">
-      <Header Navbar={<Navbar active={0} />} />
-      <div className="homearea">
-        <Data data={<AddGradesData/>} VerticalNavData={VerticalNavData} active={0} />
+      <div className="homesection">
+        <Header Navbar={<Navbar active={0} />} />
+        <div className="homearea">
+          <Data
+            data={<AddGradesData />}
+            VerticalNavData={VerticalNavData}
+            active={0}
+          />
+        </div>
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 
-export default AddGrades
+export default AddGrades;

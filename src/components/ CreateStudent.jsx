@@ -1,99 +1,123 @@
-import React,{useState} from "react";
-import {TextField, Button, Container, Grid,Input, CircularProgress,Typography} from "@mui/material";
-import {useSelector,useDispatch} from "react-redux"
-import http from "../utils/http"
-import ReactLoading from "react-loading"
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Grid,
+  Input,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import http from "../utils/http";
+import ReactLoading from "react-loading";
 import { uploadImageToFirebaseStorage } from "../utils/uplaodimagetocloud";
 
 const CreateStudent = (props) => {
   const [studentData, setStudentData] = useState({
     name: "",
-    fathername:"",
+    fathername: "",
     rollno: "",
-    address:"",
-    phone:"",
-    email:"",
-    password:"",
-    profile:"",
-    role:"student"
-      });
-      const [load,setlaod]=React.useState(false)
-      const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
-      const [imageurl,setimageurl]=React.useState(null)
-  
+    address: "",
+    phone: "",
+    email: "",
+    password: "",
+    profile: "",
+    role: "student",
+  });
+  const [load, setlaod] = React.useState(false);
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
+  const [imageurl, setimageurl] = React.useState(null);
 
   const handlePictureChange = (event) => {
     const file = event.target.files[0];
 
     if (file) {
-      setimageurl(file)
+      setimageurl(file);
     }
   };
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setStudentData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setlaod(true)
-    try{
-      if(imageurl!==null && imageurl!==undefined)
-   {
-    const downloadedurl = await uploadImageToFirebaseStorage(imageurl);
-    studentData.profile=downloadedurl
-   }
-      const {data}=await http.post("/createstudent",{...studentData},{headers:{
-        token:currentUser?.token
-      }})
-      alert(data?.message)
-    }
-    catch(e)
-    {
-      alert("Failed")
-      console.log(e)
-    }
-    finally{
-      setlaod(false)
+    setlaod(true);
+    try {
+      if (imageurl !== null && imageurl !== undefined) {
+        const downloadedurl = await uploadImageToFirebaseStorage(imageurl);
+        studentData.profile = downloadedurl;
+      }
+      const { data } = await http.post(
+        "/createstudent",
+        { ...studentData },
+        {
+          headers: {
+            token: currentUser?.token,
+          },
+        }
+      );
+      alert(data?.message);
+    } catch (e) {
+      alert("Failed");
+      console.log(e);
+    } finally {
+      setlaod(false);
     }
   };
 
   return (
-    <Container  maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '16px 32px',height:"70vh",overflowY:"scroll" }}>
-      <form  onSubmit={handleSubmit}>
-      <Typography color={"black"} variant="h4" align="center" gutterBottom>
-        Addmission
-      </Typography>
+    <Container
+      maxWidth="sm"
+      style={{
+        backgroundColor: "#ffffff",
+        borderRadius: "16px",
+        padding: "16px 32px",
+        height: "70vh",
+        overflowY: "scroll",
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <Typography color={"black"} variant="h4" align="center" gutterBottom>
+          Addmission
+        </Typography>
         <Grid container spacing={2}>
-        <Input
-          type="file"
-          onChange={handlePictureChange}
-          inputProps={{
-            accept: 'image/*',
-            id: 'profile-picture',
-          }}
-          style={{ display: 'none' }}
-        />
-        <div style={{width:"35rem",marginLeft:"1rem",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-
-        {imageurl!==null ? (
-                <Typography sx={{maxWidth: "60%", color: "#000000"}}>
-                  {imageurl?.name}
-                </Typography>
-              ) : (
-                <Typography sx={{color: "#6B6B6B"}}>No Image Insert</Typography>
-              )}
-        <label htmlFor="profile-picture">
-          <Button component="span"  color="primary">
-            Upload Picture
-          </Button>
-        </label>
-        </div>
+          <Input
+            type="file"
+            onChange={handlePictureChange}
+            inputProps={{
+              accept: "image/*",
+              id: "profile-picture",
+            }}
+            style={{ display: "none" }}
+          />
+          <div
+            style={{
+              width: "35rem",
+              marginLeft: "1rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            {imageurl !== null ? (
+              <Typography sx={{ maxWidth: "60%", color: "#000000" }}>
+                {imageurl?.name}
+              </Typography>
+            ) : (
+              <Typography sx={{ color: "#6B6B6B" }}>No Image Insert</Typography>
+            )}
+            <label htmlFor="profile-picture">
+              <Button component="span" color="primary">
+                Upload Picture
+              </Button>
+            </label>
+          </div>
           <Grid item xs={12}>
             <TextField
               name="name"
@@ -135,7 +159,7 @@ const CreateStudent = (props) => {
               required
             />
           </Grid>
-         
+
           <Grid item xs={12}>
             <TextField
               name="address"
@@ -167,16 +191,15 @@ const CreateStudent = (props) => {
             />
           </Grid>
           <Grid item xs={12}>
-          {
-            !load?
-            <Button  type="submit" variant="contained" color="success">
-            Add Student
-          </Button>
-          :  <Button  variant="contained" color="success">
-         <CircularProgress size={20} sx={{color:"white"}}/>
-          </Button>
-          
-          }
+            {!load ? (
+              <Button type="submit" variant="contained" color="success">
+                Add Student
+              </Button>
+            ) : (
+              <Button variant="contained" color="success">
+                <CircularProgress size={20} sx={{ color: "white" }} />
+              </Button>
+            )}
           </Grid>
         </Grid>
       </form>

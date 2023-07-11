@@ -1,39 +1,73 @@
-import { useState } from 'react';
-import { TextField, Button, Container, Typography,Grid,CircularProgress } from '@mui/material';
-import {useSelector,useDispatch} from "react-redux"
-import http from "../utils/http"
+import { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import http from "../utils/http";
 
 const ExpenseForm = () => {
-  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
   const [bill_paid, setbill_paid] = useState(1000);
   const [salaries_paid, setsalaries_paid] = useState(1000);
   const [stationary_spending, setstationary_spending] = useState(1000);
   const [others, setothers] = useState(1000);
   const [stationary_earning, setstationary_earning] = useState(1000);
   const [fee_received, setfee_received] = useState(1000);
-  const [date,setdate]=useState("2023-05-01")
-  const [load,setload]=useState(false)
-  const handleSubmit = async(event) => {
-    setload(true)
+  const [date, setdate] = useState("2023-05-01");
+  const [load, setload] = useState(false);
+  const handleSubmit = async (event) => {
+    setload(true);
     event.preventDefault();
-    try{
-      const {data}=await http.post("/createtransaction",{bill_paid,date,salaries_paid,stationary_earning,stationary_spending,others,fee_received},{headers:{
-        token:currentUser?.token
-      }})
-      alert(data?.message)
-    } 
-    catch(e){
-      console.log(e)
-      alert("Failed")
-    }
-    finally{
-      setload(false)
+    try {
+      const { data } = await http.post(
+        "/createtransaction",
+        {
+          bill_paid,
+          date,
+          salaries_paid,
+          stationary_earning,
+          stationary_spending,
+          others,
+          fee_received,
+        },
+        {
+          headers: {
+            token: currentUser?.token,
+          },
+        }
+      );
+      alert(data?.message);
+    } catch (e) {
+      console.log(e);
+      alert("Failed");
+    } finally {
+      setload(false);
     }
   };
 
   return (
-    <Container className='expenseform' maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px',height:"70vh",overflowY:"scroll" }}>
-      <Typography sx={{color:"#000000"}} variant="h4" align="center" gutterBottom>
+    <Container
+      className="expenseform"
+      maxWidth="sm"
+      style={{
+        backgroundColor: "#ffffff",
+        borderRadius: "8px",
+        padding: "16px",
+        height: "70vh",
+        overflowY: "scroll",
+      }}
+    >
+      <Typography
+        sx={{ color: "#000000" }}
+        variant="h4"
+        align="center"
+        gutterBottom
+      >
         Expense Form
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -46,9 +80,9 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
-      <TextField
+        <TextField
           label="Salaries Paid"
           fullWidth
           type="number"
@@ -57,7 +91,7 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
         <TextField
           label="Stationary Spending"
@@ -68,7 +102,7 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
         <TextField
           label="Other Expenses"
@@ -79,7 +113,7 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
         <TextField
           label="Stationary Earning"
@@ -90,7 +124,7 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
         <TextField
           label="Fee Received"
@@ -101,33 +135,42 @@ const ExpenseForm = () => {
           margin="normal"
           variant="outlined"
           required
-          style={{ borderRadius: '8px' }}
+          style={{ borderRadius: "8px" }}
         />
-           <Grid item xs={12}>
-            <input
-              style={{
-                width: "100%",
-                height: "50px",
-                borderRadius: ".3rem",
-                borderWidth: "0px",
-              }}
-              type="date"
-              value={date}
-              onChange={(e)=>setdate(e.target.value)}
-              required
-            />
-            <p>Selected date: {date}</p>
-          </Grid>
-          {
- !load?
- <Button className='btn' type="submit" variant="contained" color="success">
-          Add Expenses
-        </Button>
-       :
-       <Button disabled={load} className='btn'  variant="contained" color="success">
-          <CircularProgress size={20} sx={{color:"white"}}/>
-        </Button>
-}
+        <Grid item xs={12}>
+          <input
+            style={{
+              width: "100%",
+              height: "50px",
+              borderRadius: ".3rem",
+              borderWidth: "0px",
+            }}
+            type="date"
+            value={date}
+            onChange={(e) => setdate(e.target.value)}
+            required
+          />
+          <p>Selected date: {date}</p>
+        </Grid>
+        {!load ? (
+          <Button
+            className="btn"
+            type="submit"
+            variant="contained"
+            color="success"
+          >
+            Add Expenses
+          </Button>
+        ) : (
+          <Button
+            disabled={load}
+            className="btn"
+            variant="contained"
+            color="success"
+          >
+            <CircularProgress size={20} sx={{ color: "white" }} />
+          </Button>
+        )}
       </form>
     </Container>
   );

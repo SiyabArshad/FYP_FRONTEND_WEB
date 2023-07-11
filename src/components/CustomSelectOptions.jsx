@@ -1,4 +1,4 @@
-import DatePickers from './DatePicker';
+import DatePickers from "./DatePicker";
 import React, { useState, useMemo } from "react";
 import {
   TextField,
@@ -21,7 +21,8 @@ import {
   styled,
   Select,
   FormControl,
-  InputLabel,MenuItem
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 import {
   Search as SearchIcon,
@@ -34,7 +35,7 @@ import {
   DeleteRounded,
   ArrowRight,
   ArrowLeft,
-  Save
+  Save,
 } from "@mui/icons-material";
 import "./componentscss/table.css";
 import Loading from "./Loading";
@@ -48,35 +49,33 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-export default function CustomSelectOptions({changestatus}) {
-    const [status,setstatus]=useState("present")
-    
+export default function CustomSelectOptions({ changestatus }) {
+  const [status, setstatus] = useState("present");
+
   return (
     <Grid item xs={12}>
-           <FormControl fullWidth>
-        <InputLabel color='success' id="demo-simple-select-label">Status</InputLabel>
+      <FormControl fullWidth>
+        <InputLabel color="success" id="demo-simple-select-label">
+          Status
+        </InputLabel>
         <Select
-        color='success'
+          color="success"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={status}
           label="Status"
-          onChange={(e)=>
-            {
-                changestatus(e.target.value)
-                setstatus(e.target.value)
-            }
-            }
+          onChange={(e) => {
+            changestatus(e.target.value);
+            setstatus(e.target.value);
+          }}
         >
-            {
-                ["present","absent"]?.map((item,i)=>(
-                    <MenuItem key={i} value={item}>{item}</MenuItem>
-                ))
-            }
-
-          
+          {["present", "absent"]?.map((item, i) => (
+            <MenuItem key={i} value={item}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-        </Grid>
-  )
+    </Grid>
+  );
 }

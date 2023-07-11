@@ -1,4 +1,4 @@
-import DatePickers from './DatePicker';
+import DatePickers from "./DatePicker";
 import React, { useState, useMemo } from "react";
 import {
   TextField,
@@ -21,7 +21,8 @@ import {
   styled,
   Select,
   FormControl,
-  InputLabel,MenuItem
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 import {
   Search as SearchIcon,
@@ -34,7 +35,7 @@ import {
   DeleteRounded,
   ArrowRight,
   ArrowLeft,
-  Save
+  Save,
 } from "@mui/icons-material";
 import "./componentscss/table.css";
 import Loading from "./Loading";
@@ -42,8 +43,8 @@ import http from "../utils/http";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
-import CustomSelectOptions from './CustomSelectOptions';
-import CustomAttendanceStatus from './CustomAttendanceStatus';
+import CustomSelectOptions from "./CustomSelectOptions";
+import CustomAttendanceStatus from "./CustomAttendanceStatus";
 
 const CustomIconButton = styled(IconButton)(({ theme }) => ({
   "&:focus": {
@@ -51,13 +52,19 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 const AttendTable = () => {
-    const param=useParams()
+  const param = useParams();
   const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
   const [search, setsearch] = useState("");
   const [load, setload] = useState(false);
   const [records, setrecords] = useState([]);
-  const [status,setstatus]=useState("present")
-  const [date,setdate]=React.useState(new Date(Date.now()).getUTCFullYear()+"-"+(new Date(Date.now()).getMonth()+1)+"-"+new Date(Date.now()).getDate())
+  const [status, setstatus] = useState("present");
+  const [date, setdate] = React.useState(
+    new Date(Date.now()).getUTCFullYear() +
+      "-" +
+      (new Date(Date.now()).getMonth() + 1) +
+      "-" +
+      new Date(Date.now()).getDate()
+  );
   const getdata = async () => {
     setload(true);
     try {
@@ -67,8 +74,7 @@ const AttendTable = () => {
         },
       });
       setrecords(data?.data);
-      console.log(data?.data)
-      
+      console.log(data?.data);
     } catch (e) {
       console.log(e);
     } finally {
@@ -78,27 +84,29 @@ const AttendTable = () => {
   React.useEffect(() => {
     getdata();
   }, []);
-  const markattendance=async(id)=>{
-    setload(true)
-    try{
-      const {data}=http.post("/createattendance",{date,status,enrollmentId:id}, {
-        headers: {
-          token: currentUser?.token,
-        },
-      })
-      alert("Attendance Added")
+  const markattendance = async (id) => {
+    setload(true);
+    try {
+      const { data } = http.post(
+        "/createattendance",
+        { date, status, enrollmentId: id },
+        {
+          headers: {
+            token: currentUser?.token,
+          },
+        }
+      );
+      alert("Attendance Added");
+    } catch (e) {
+      alert("Failed");
+    } finally {
+      setload(false);
     }
-    catch(e){ 
-      alert("Failed")
-    }
-    finally{
-      setload(false)
-    }
-  }
-  const changestatus=(stat)=>{
-    setstatus(stat)
-  }
- console.log(date)
+  };
+  const changestatus = (stat) => {
+    setstatus(stat);
+  };
+  console.log(date);
 
   return (
     <Container
@@ -113,18 +121,18 @@ const AttendTable = () => {
     >
       <Loading visible={load} />
       <div className="searchbox">
-      <input
-              style={{
-                width: "20%",
-                height: "50px",
-                borderRadius: ".3rem",
-                borderWidth: "1px",
-              }}
-              type="date"
-              value={date}
-              onChange={(e)=>setdate(e.target.value)}
-              required
-            />
+        <input
+          style={{
+            width: "20%",
+            height: "50px",
+            borderRadius: ".3rem",
+            borderWidth: "1px",
+          }}
+          type="date"
+          value={date}
+          onChange={(e) => setdate(e.target.value)}
+          required
+        />
       </div>
       <table className="customers">
         <tr>
@@ -139,21 +147,21 @@ const AttendTable = () => {
           <tr key={i}>
             <td>{item?.student.name}</td>
             <td>{item?.student.rollno}</td>
-            <td>
-                {
-                    item?.class.classname
-                }
-            </td>
+            <td>{item?.class.classname}</td>
             {/* here status */}
             {/* <td>Present</td> */}
-<CustomAttendanceStatus date={date} id={item?.id} token={currentUser?.token}/>
+            <CustomAttendanceStatus
+              date={date}
+              id={item?.id}
+              token={currentUser?.token}
+            />
             {/* end status */}
             <td>
-            <CustomSelectOptions changestatus={changestatus}/>
+              <CustomSelectOptions changestatus={changestatus} />
             </td>
             <td>
               <CustomIconButton
-              onClick={()=>markattendance(item?.id)}
+                onClick={() => markattendance(item?.id)}
                 color="success"
               >
                 <Save color="success" />

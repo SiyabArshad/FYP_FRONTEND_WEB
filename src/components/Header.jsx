@@ -1,7 +1,7 @@
 import lwhitebg from "../assets/light_whitebackground.png";
-import {useSelector,useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 
-const Header = ({Navbar}) => {
+const Header = ({ Navbar }) => {
   return (
     <>
       <header>

@@ -1,26 +1,35 @@
-import {NavLink, useNavigation} from "react-router-dom";
-import {useSelector,useDispatch} from "react-redux"
-import { login,logout } from "../redux/auth/authActions";
+import { NavLink, useNavigation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../redux/auth/authActions";
 
-const VerticalNav = ({VerticalNavData,active},navigation) => {
-  const dispatch=useDispatch()
-// const navigation=useNavigation()
+const VerticalNav = ({ VerticalNavData, active }, navigation) => {
+  const dispatch = useDispatch();
+  // const navigation=useNavigation()
   return (
     <>
       <div className="verticalnavbar">
         <ul>
           {VerticalNavData.map((item, index) => {
             return (
-              <NavLink  className={index === active&&"active"} to={item.url} key={index}>
+              <NavLink
+                className={index === active && "active"}
+                to={item.url}
+                key={index}
+              >
                 <li>{item.name}</li>
               </NavLink>
             );
           })}
-          <li onClick={()=>{
-            dispatch(logout())
-            // navigation("/")
-            window.location.href = "/";
-          }} style={{cursor:"pointer"}}>Logout</li>
+          <li
+            onClick={() => {
+              dispatch(logout());
+              // navigation("/")
+              window.location.href = "/";
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            Logout
+          </li>
         </ul>
       </div>
     </>

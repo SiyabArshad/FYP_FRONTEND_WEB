@@ -146,15 +146,19 @@ const StudentData = () => {
             <td>{item?.address}</td>
             <td>
               <Avatar sx={{ width: 50, height: 40 }}>
-                {
-                  item?.profilePic?<img
-                  src={item?.profilePic}
-                  alt="Avatar"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                :
-                <AccountCircle sx={{width: "100%", height: "100%"}} />
-                }
+                {item?.profilePic ? (
+                  <img
+                    src={item?.profilePic}
+                    alt="Avatar"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <AccountCircle sx={{ width: "100%", height: "100%" }} />
+                )}
               </Avatar>
             </td>
             <td>
@@ -181,13 +185,13 @@ const StudentData = () => {
           }}
         >
           <CustomIconButton
-            disabled={records?.page === 1||records?.total===0}
+            disabled={records?.page === 1 || records?.total === 0}
             onClick={() => getdata(records?.page - 1, 5)}
           >
             <ArrowLeft fontSize="large" />
           </CustomIconButton>
           <CustomIconButton
-            disabled={records?.page === records?.pages||records?.total===0}
+            disabled={records?.page === records?.pages || records?.total === 0}
             onClick={() => getdata(records?.page + 1, 5)}
           >
             <ArrowRight fontSize="large" />

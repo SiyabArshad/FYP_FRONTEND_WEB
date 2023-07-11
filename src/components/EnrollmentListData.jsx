@@ -43,12 +43,12 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 const EnrollmentListData = () => {
-    const param=useParams()
+  const param = useParams();
   const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
   const [search, setsearch] = useState("");
   const [load, setload] = useState(false);
   const [records, setrecords] = useState([]);
-  const [maindata,setmaindata]=useState([])
+  const [maindata, setmaindata] = useState([]);
 
   const getdata = async () => {
     setload(true);
@@ -60,7 +60,6 @@ const EnrollmentListData = () => {
       });
       setrecords(data?.data);
       setmaindata(data?.data);
-      
     } catch (e) {
       console.log(e);
     } finally {
@@ -77,13 +76,17 @@ const EnrollmentListData = () => {
     if (per) {
       setload(true);
       try {
-       const{data} =await http.put(`/updateenrollment`,{enrollmentId:id,status:false}, {
-          headers: {
-            token: currentUser?.token,
-          },
-        });
+        const { data } = await http.put(
+          `/updateenrollment`,
+          { enrollmentId: id, status: false },
+          {
+            headers: {
+              token: currentUser?.token,
+            },
+          }
+        );
         getdata();
-        alert(data?.message)
+        alert(data?.message);
       } catch (e) {
         console.log(e);
       } finally {
@@ -98,15 +101,12 @@ const EnrollmentListData = () => {
     const { value } = event.target;
     setsearch(value);
     try {
-        let temp=maindata
-        if(value==='')
-        {
-            setrecords(maindata)
-        }
-        else
-        {
-            setrecords(temp.filter((item)=>item?.student.name.includes(value)))
-        }
+      let temp = maindata;
+      if (value === "") {
+        setrecords(maindata);
+      } else {
+        setrecords(temp.filter((item) => item?.student.name.includes(value)));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -150,11 +150,7 @@ const EnrollmentListData = () => {
             <td>{item?.student.phone}</td>
             <td>{item?.student.rollno}</td>
             <td>{item?.student.address}</td>
-            <td>
-                {
-                    item?.class.classname
-                }
-            </td>
+            <td>{item?.class.classname}</td>
             <td>
               <CustomIconButton
                 onClick={() => deletestudent(item?.id)}
@@ -167,10 +163,7 @@ const EnrollmentListData = () => {
         ))}
       </table>
       <div className="searchboxw">
-        <Typography color={"black"}>
-          Total Records {records?.length}
-        </Typography>
-
+        <Typography color={"black"}>Total Records {records?.length}</Typography>
       </div>
     </Container>
   );

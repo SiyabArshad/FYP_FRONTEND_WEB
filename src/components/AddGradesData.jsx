@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import { styled } from '@mui/system';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import {useSelector,useDispatch} from "react-redux"
-const FormContainer = styled('div')`
+import React, { useState } from "react";
+import { styled } from "@mui/system";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { useSelector, useDispatch } from "react-redux";
+const FormContainer = styled("div")`
   background-color: #ffffff;
   padding: 20px;
-  width:600px;
+  width: 600px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
 `;
 
-const FormTitle = styled('h1')`
+const FormTitle = styled("h1")`
   margin-bottom: 20px;
-  color:black;
-  text-align:center;
+  color: black;
+  text-align: center;
 `;
 
-const FormInput = styled('div')`
+const FormInput = styled("div")`
   margin-bottom: 16px;
 `;
 
@@ -26,15 +25,15 @@ const FormButton = styled(Button)`
   margin-top: 16px;
   margin-left: 14rem;
   background-color: #45a049;
-  &:hover{
-    background-color: #285E4F
+  &:hover {
+    background-color: #285e4f;
   }
 `;
 
 const AddGradesData = () => {
-  const [studentName, setStudentName] = useState('');
-  const [rollNumber, setRollNumber] = useState('');
-  const [examType, setExamType] = useState('');
+  const [studentName, setStudentName] = useState("");
+  const [rollNumber, setRollNumber] = useState("");
+  const [examType, setExamType] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleNameChange = (event) => {
@@ -67,7 +66,7 @@ const AddGradesData = () => {
       <form onSubmit={handleSubmit}>
         <FormInput>
           <TextField
-          sx={{width:"550px"}}
+            sx={{ width: "550px" }}
             label="Student Name"
             value={studentName}
             onChange={handleNameChange}
@@ -76,7 +75,7 @@ const AddGradesData = () => {
         </FormInput>
         <FormInput>
           <TextField
-          sx={{width:"550px"}}
+            sx={{ width: "550px" }}
             label="Roll Number"
             value={rollNumber}
             onChange={handleRollNumberChange}
@@ -85,7 +84,7 @@ const AddGradesData = () => {
         </FormInput>
         <FormInput>
           <TextField
-          sx={{width:"550px"}}
+            sx={{ width: "550px" }}
             label="Exam Type"
             value={examType}
             onChange={handleExamTypeChange}
@@ -93,16 +92,25 @@ const AddGradesData = () => {
           />
         </FormInput>
         <FormInput>
-        <div style={{display:"flex",alignItems:"center"}}>
-        <h3 style={{fontSize:"16px",fontWeight:"600",marginRight:"8px",color:"black"}}>Upload Result: </h3>
-          <input
-          style={{color:"black"}}
-            type="file"
-            accept=".pdf"
-            onChange={handleFileUpload}
-            required
-          />
-        </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <h3
+              style={{
+                fontSize: "16px",
+                fontWeight: "600",
+                marginRight: "8px",
+                color: "black",
+              }}
+            >
+              Upload Result:{" "}
+            </h3>
+            <input
+              style={{ color: "black" }}
+              type="file"
+              accept=".pdf"
+              onChange={handleFileUpload}
+              required
+            />
+          </div>
         </FormInput>
         <FormButton variant="contained" type="submit">
           Submit

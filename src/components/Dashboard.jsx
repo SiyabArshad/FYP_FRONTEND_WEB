@@ -1,72 +1,89 @@
-import React, {useEffect, useState} from "react";
-import {ResponsiveBar} from "@nivo/bar";
+import React, { useEffect, useState } from "react";
+import { ResponsiveBar } from "@nivo/bar";
 
 import students from "../assets/students.png";
 import teacher from "../assets/teacher.png";
 import expense from "../assets/budget.png";
 import SelectField from "./SelectField";
-import {useSelector,useDispatch} from "react-redux"
-import http from "../utils/http"
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useSelector, useDispatch } from "react-redux";
+import http from "../utils/http";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 import Loading from "./Loading";
 const Dashboard = () => {
-  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
-  
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
+
   const [studentsCount, setStudentsCount] = useState(0);
   const [teacherCount, setTeacherCount] = useState(0);
   const [expenseCount, setExpenseCount] = useState(0);
-  const [studentsnumber,setsudentnumber]=useState(0)
-  const [teachernumber,setteachernumber]=useState(0)
-  const [expensenumber,setexp]=useState(0)
-  const [duration,setduration]=useState(6)
-  const [financial,setfinancial]=useState([])
-  const [load,setload]=useState(false)
-  const callduration=async(state)=>{
- setduration(state)
- const fndata=await http.get(`/financial/progress?months=${state}`,{headers:{
-  token:currentUser?.token
-}})
- setfinancial(fndata?.data?.data)
-  }
+  const [studentsnumber, setsudentnumber] = useState(0);
+  const [teachernumber, setteachernumber] = useState(0);
+  const [expensenumber, setexp] = useState(0);
+  const [duration, setduration] = useState(6);
+  const [financial, setfinancial] = useState([]);
+  const [load, setload] = useState(false);
+  const callduration = async (state) => {
+    setduration(state);
+    const fndata = await http.get(`/financial/progress?months=${state}`, {
+      headers: {
+        token: currentUser?.token,
+      },
+    });
+    setfinancial(fndata?.data?.data);
+    console.log(fndata?.data?.data)
+  };
 
-  const getcount=async()=>{
-    setload(true)
-    try{
-      const scount=await http.get("/studentcount",{headers:{
-        token:currentUser?.token
-      }})
-      setsudentnumber(scount?.data?.data?.count)
-      setStudentsCount(scount?.data?.data?.count)
-     
-      const tcount=await http.get("/teachercount",{headers:{
-        token:currentUser?.token
-      }})
+  const getcount = async () => {
+    setload(true);
+    try {
+      const scount = await http.get("/studentcount", {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setsudentnumber(scount?.data?.data?.count);
+      setStudentsCount(scount?.data?.data?.count);
 
-      setteachernumber(tcount?.data?.data?.count)
-      setTeacherCount(tcount?.data?.data?.count)
-      const lme=await http.get("/lastmonthexpense",{headers:{
-        token:currentUser?.token
-      }})
-      setExpenseCount(lme?.data.data)
-      setexp(lme?.data.data)
-      const fndata=await http.get(`/financial/progress?months=6`,{headers:{
-        token:currentUser?.token
-      }})
-       setfinancial(fndata?.data?.data)
+      const tcount = await http.get("/teachercount", {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
 
-    } 
-    catch(e){
-      console.log(e)
+      setteachernumber(tcount?.data?.data?.count);
+      setTeacherCount(tcount?.data?.data?.count);
+      const lme = await http.get("/lastmonthexpense", {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setExpenseCount(lme?.data.data);
+      setexp(lme?.data.data);
+      const fndata = await http.get(`/financial/progress?months=${duration}`, {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setfinancial(fndata?.data?.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setload(false);
     }
-    finally{
-      setload(false)
-    }
-    }
-
+  };
 
   useEffect(() => {
-    getcount()
+    getcount();
     setStudentsCount(1); // Reset count to 1 on every refresh
     setTeacherCount(1); // Reset count to 1 on every refresh
     setExpenseCount(1); // Reset count to 1 on every refresh
@@ -102,16 +119,15 @@ const Dashboard = () => {
   }, [studentsCount, teacherCount, expenseCount]);
 
   const tabs = [
-    {img: students, name: "STUDENTS", number: studentsCount},
-    {img: teacher, name: "TEACHERS", number: teacherCount},
-    {img: expense, name: "EXPENSE LAST MONTH", number: expenseCount},
+    { img: students, name: "STUDENTS", number: studentsCount },
+    { img: teacher, name: "TEACHERS", number: teacherCount },
+    { img: expense, name: "EXPENSE LAST MONTH", number: expenseCount },
   ];
-  
 
   return (
     <>
       <div className="dashboard">
-        <Loading visible={load}/>
+        <Loading visible={load} />
         <div className="tabs">
           {tabs.map((tabdata, index) => {
             return (
@@ -125,33 +141,32 @@ const Dashboard = () => {
             );
           })}
         </div>
-        <div className="expense_select" >
+        <div className="expense_select">
           <h2>Financial Analysis</h2>
-          <SelectField duration={callduration}/>
+          <SelectField duration={callduration} />
         </div>
         <div className="chart">
-<ResponsiveContainer width="100%" height="100%" >
-        <BarChart
-          width={500}
-          height={300}
-          data={financial} // Use the fetched data in the chart
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="totalExpense" stackId="a" fill="#285E4F" />
-          <Bar dataKey="totalEarning" stackId="a" fill="#F47560" />
-        </BarChart>
-      </ResponsiveContainer>
-
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              width={500}
+              height={300}
+              data={financial} // Use the fetched data in the chart
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="totalExpense" stackId="a" fill="#285E4F" />
+              <Bar dataKey="totalEarning" stackId="a" fill="#F47560" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </>

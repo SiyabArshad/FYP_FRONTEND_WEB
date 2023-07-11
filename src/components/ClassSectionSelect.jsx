@@ -1,6 +1,6 @@
 import React from "react";
-import {Select, MenuItem, FormControl, InputLabel} from "@mui/material";
-import {useSelector,useDispatch} from "react-redux"
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 const ClassSectionSelect = () => {
   const [selectedClass, setSelectedClass] = React.useState("");
   const [selectedSection, setSelectedSection] = React.useState("");
@@ -38,22 +38,21 @@ const ClassSectionSelect = () => {
       value: "",
     },
     {
-        section: "A",
-        value: "A",
-      },
-      {
-        section: "B",
-        value: "B",
-      },
-      {
-        section: "C",
-        value: "C",
-      },
-      {
-        section: "D",
-        value: "D",
-      },
-    
+      section: "A",
+      value: "A",
+    },
+    {
+      section: "B",
+      value: "B",
+    },
+    {
+      section: "C",
+      value: "C",
+    },
+    {
+      section: "D",
+      value: "D",
+    },
   ];
 
   const handleClassChange = (event) => {
@@ -65,14 +64,15 @@ const ClassSectionSelect = () => {
   };
 
   return (
-    <div style={{display: "flex", justifyContent: "flex-end", gap: "0.8rem"}}>
-      <FormControl style={{minWidth: "6rem"}} variant="filled">
+    <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.8rem" }}>
+      <FormControl style={{ minWidth: "6rem" }} variant="filled">
         <InputLabel>Class</InputLabel>
         <Select
           value={selectedClass}
           onChange={handleClassChange}
           label="Class"
-          sx={{background: "#F0F0F0"}}>
+          sx={{ background: "#F0F0F0" }}
+        >
           {Class.map((data, index) => {
             return (
               <MenuItem key={index} value={data.value}>
@@ -83,20 +83,22 @@ const ClassSectionSelect = () => {
         </Select>
       </FormControl>
 
-      <FormControl style={{minWidth: "6rem"}} variant="filled">
+      <FormControl style={{ minWidth: "6rem" }} variant="filled">
         <InputLabel>Section</InputLabel>
         <Select
           value={selectedSection}
           onChange={handleSectionChange}
           label="Section"
-          sx={{background: "#F0F0F0"}}>
-          
-          {
-            Section.map((data,index)=>{
-                return <MenuItem key={index} value={data.value}> {data.section}</MenuItem>
-            })
-          }
-          
+          sx={{ background: "#F0F0F0" }}
+        >
+          {Section.map((data, index) => {
+            return (
+              <MenuItem key={index} value={data.value}>
+                {" "}
+                {data.section}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   TextField,
   Container,
@@ -19,7 +19,7 @@ import {
   TableRow,
   styled,
   Card,
-  CardContent
+  CardContent,
 } from "@mui/material";
 import {
   Search as SearchIcon,
@@ -45,80 +45,113 @@ function Class() {
   const [load, setload] = useState(false);
   const [records, setrecords] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-const handleOpenModal = () => {
+  const handleOpenModal = () => {
     setIsModalOpen(true);
-
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const getrecords=async()=>{
-    setload(true)  
-    try{
-        const{data}=await http.get("/teachers/classes",{
-          headers:{
-            token:currentUser?.token
-          }
-        })
-        setrecords(data?.data)
-      }
-      catch(e){
-        console.log(e)
-      }
-      finally{
-        setload(false)
-      }
-  }
-  React.useEffect(()=>{
-    getrecords()
-  },[])
+  const getrecords = async () => {
+    setload(true);
+    try {
+      const { data } = await http.get("/teachers/classes", {
+        headers: {
+          token: currentUser?.token,
+        },
+      });
+      setrecords(data?.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setload(false);
+    }
+  };
+  React.useEffect(() => {
+    getrecords();
+  }, []);
   return (
     <>
-        <Container
-      style={{
-        width: "100%",
-        padding: "16px",
-        height: "80vh",
-        overflowY: "scroll",
-      }}
-    >
-      <Container style={{display:"flex",justifyContent:"flex-end"}}>
-        {currentUser?.role==="teacher"&& <Button onClick={handleOpenModal} variant="contained" color="error">Create Class</Button>}
-         </Container>
-      <Loading visible={load} />
-      <Container style={{       
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"90%"
-        }}>
-       {
-        records?.length===0?
-           <Typography color={"white"}> No Class Found</Typography> 
-       : <Container style={{display:"flex",flexDirection:"row",alignItems:"center",flexWrap:"wrap",height:"100%",overflowY:"scroll",cursor:"pointer"}}>
-       {
-         records?.map((item,i)=>(
-          <Link   style={{width:"19%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:'column',margin:"1rem 1rem"}} key={i} to={`/classes/${item?.classname}/${item?.id}`} >
-           <Card  style={{minHeight:"120px"}}>
-           <CardContent>
-           <Typography sx={{fontWeight:"bold",fontSize:"1.2rem",textAlign:"center"}}>{item?.classname}</Typography>
-           <Typography  sx={{textAlign:"center"}}>{item?.section}</Typography>
-           </CardContent>
-          </Card>
-          </Link>
-         ))
-       }
-
-     </Container>
-          }
+      <Container
+        style={{
+          width: "100%",
+          padding: "16px",
+          height: "80vh",
+          overflowY: "scroll",
+        }}
+      >
+        <Container style={{ display: "flex", justifyContent: "flex-end" }}>
+          {currentUser?.role === "teacher" && (
+            <Button onClick={handleOpenModal} variant="contained" color="error">
+              Create Class
+            </Button>
+          )}
         </Container>
-        <CreateNewClass refreshrec={getrecords} closefunc={handleCloseModal} visible={isModalOpen}/>
+        <Loading visible={load} />
+        <Container
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "90%",
+          }}
+        >
+          {records?.length === 0 ? (
+            <Typography color={"white"}> No Class Found</Typography>
+          ) : (
+            <Container
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                flexWrap: "wrap",
+                height: "100%",
+                overflowY: "scroll",
+                cursor: "pointer",
+              }}
+            >
+              {records?.map((item, i) => (
+                <Link
+                  style={{
+                    width: "19%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    margin: "1rem 1rem",
+                  }}
+                  key={i}
+                  to={`/classes/${item?.classname}/${item?.id}`}
+                >
+                  <Card style={{ minHeight: "120px" }}>
+                    <CardContent>
+                      <Typography
+                        sx={{
+                          fontWeight: "bold",
+                          fontSize: "1.2rem",
+                          textAlign: "center",
+                        }}
+                      >
+                        {item?.classname}
+                      </Typography>
+                      <Typography sx={{ textAlign: "center" }}>
+                        {item?.section}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </Container>
+          )}
+        </Container>
+        <CreateNewClass
+          refreshrec={getrecords}
+          closefunc={handleCloseModal}
+          visible={isModalOpen}
+        />
       </Container>
-  
     </>
-
-  )
+  );
 }
 
-export default Class
+export default Class;

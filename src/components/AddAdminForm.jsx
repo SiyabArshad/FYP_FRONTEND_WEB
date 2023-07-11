@@ -1,39 +1,63 @@
-import  { useState } from 'react';
-import { TextField, Button, Container, Typography ,Input,CircularProgress } from '@mui/material';
-import {useSelector,useDispatch} from "react-redux"
-import http from "../utils/http"
+import { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Input,
+  CircularProgress,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import http from "../utils/http";
 
 const AddAdminForm = () => {
-  const {isAuthenticated,currentUser}=useSelector((state)=>state.auth)
-  const [name, setName] = useState('');
-  const [phone, setphone] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [load,setload]=useState(false)
-  
-  const handleSubmit = async(event) => {
-    setload(true)
-    event.preventDefault();
-    try{
-      const{data}=await http.post("/createuser",{name,email,phone,address,password,role:"admin",admin:true},{headers:{
-        token:currentUser?.token
-      }})
-      alert(data?.message)
-    } 
-    catch(e){
-      console.log(e)
-      alert("Failed")
-    }
-    finally{
-      setload(false)
-    }
+  const { isAuthenticated, currentUser } = useSelector((state) => state.auth);
+  const [name, setName] = useState("");
+  const [phone, setphone] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [load, setload] = useState(false);
 
+  const handleSubmit = async (event) => {
+    setload(true);
+    event.preventDefault();
+    try {
+      const { data } = await http.post(
+        "/createuser",
+        { name, email, phone, address, password, role: "admin", admin: true },
+        {
+          headers: {
+            token: currentUser?.token,
+          },
+        }
+      );
+      alert(data?.message);
+    } catch (e) {
+      console.log(e);
+      alert("Failed");
+    } finally {
+      setload(false);
+    }
   };
 
   return (
-    <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '16px 32px',height:"70vh",overflowY:"scroll" }}   >
-      <Typography sx={{color:"#000000"}} variant="h4" align="center" gutterBottom>
+    <Container
+      maxWidth="sm"
+      style={{
+        backgroundColor: "#ffffff",
+        borderRadius: "16px",
+        padding: "16px 32px",
+        height: "70vh",
+        overflowY: "scroll",
+      }}
+    >
+      <Typography
+        sx={{ color: "#000000" }}
+        variant="h4"
+        align="center"
+        gutterBottom
+      >
         Add Admin
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -47,7 +71,7 @@ const AddAdminForm = () => {
           required
         />
         <TextField
-        type='number'
+          type="number"
           label="Contact No"
           fullWidth
           value={phone}
@@ -55,11 +79,9 @@ const AddAdminForm = () => {
           margin="normal"
           variant="outlined"
           required
-          
         />
-        
-        <TextField
 
+        <TextField
           label="Address"
           fullWidth
           value={address}
@@ -69,7 +91,7 @@ const AddAdminForm = () => {
           required
         />
         <TextField
-          type='email'
+          type="email"
           label="Email"
           fullWidth
           value={email}
@@ -88,17 +110,21 @@ const AddAdminForm = () => {
           variant="outlined"
           required
         />
-    
-  {
-    load?
-    <Button disabled  className='btn' variant="contained" color="success">
-    <CircularProgress size={20} sx={{color:"white"}}/>
-  </Button>
-  :
-  <Button  className='btn' type="submit" variant="contained" color="success">
-  Add Admin
-</Button>
-  }
+
+        {load ? (
+          <Button disabled className="btn" variant="contained" color="success">
+            <CircularProgress size={20} sx={{ color: "white" }} />
+          </Button>
+        ) : (
+          <Button
+            className="btn"
+            type="submit"
+            variant="contained"
+            color="success"
+          >
+            Add Admin
+          </Button>
+        )}
       </form>
     </Container>
   );
