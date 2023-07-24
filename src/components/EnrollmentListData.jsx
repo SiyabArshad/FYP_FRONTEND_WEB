@@ -76,15 +76,8 @@ const EnrollmentListData = () => {
     if (per) {
       setload(true);
       try {
-        const { data } = await http.put(
-          `/updateenrollment`,
-          { enrollmentId: id, status: false },
-          {
-            headers: {
-              token: currentUser?.token,
-            },
-          }
-        );
+        const { data } = await http.delete(
+          `/deleteenrollment?token=${currentUser?.token}&id=${id}`);
         getdata();
         alert(data?.message);
       } catch (e) {
